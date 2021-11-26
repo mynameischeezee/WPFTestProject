@@ -1,0 +1,16 @@
+﻿<Application x:Class="BAMTestProject.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BAMTestProject"
+             xmlns:bootstrapper="clr-namespace:BAMTestProject.Bootstrapper">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <bootstrapper:MainBootstrapper x:Key="bootstrapper"/>
+                </ResourceDictionary>
+                <ResourceDictionary Source="Styles/Buttons.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

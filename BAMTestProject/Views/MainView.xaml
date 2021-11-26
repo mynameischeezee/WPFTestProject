@@ -1,0 +1,30 @@
+﻿<Window x:Class="BAMTestProject.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BAMTestProject.Views"
+        mc:Ignorable="d"
+        Title="MainView" Width="1280" Height="720" WindowStyle="None" Background="White" Foreground="#FF111111" FontFamily="Segoe UI Light">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="25*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="15*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CloseButtonStyle}" x:Name="Close"></Button>
+        <ContentControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="ViewsContentControl"></ContentControl>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+            <RadioButton GroupName="Views" Content="Broadcasts" Style="{StaticResource ToggleButtonStyle}" x:Name="BroadcastsView"/>
+            <RadioButton GroupName="Views" Content="Markets" Style="{StaticResource ToggleButtonStyle}" x:Name="MarketsView"/>
+            <RadioButton GroupName="Views" Content="Shows" Style="{StaticResource ToggleButtonStyle}" x:Name="ShowsView"/>
+            <Label x:Name="Test"></Label>
+        </StackPanel>
+    </Grid>
+</Window>
