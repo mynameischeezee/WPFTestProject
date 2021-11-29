@@ -34,38 +34,15 @@ namespace BAMTestProject.ViewModels
             }
         }
 
-        private bool _broadcastsView;
-
-        public bool BroadcastsView
-        {
-            get
-            {
-                ViewsContentControl = _broadcastsViewModel;
-                return _broadcastsView;
-            }
-            set
-            {
-                _broadcastsView = value;
-                ViewsContentControl = _broadcastsViewModel;
-                NotifyOfPropertyChange(() => BroadcastsView);
-            }
-        }
-
-
         private bool _showsView;
 
         public bool ShowsView
         {
-            get
-            {
-                ViewsContentControl = _showsViewModel;
-                return _showsView;
-            }
-            
+            get => _showsView;
             set
             {
-                _showsView = value;
                 ViewsContentControl = _showsViewModel;
+                _showsView = value;
                 NotifyOfPropertyChange(() => ShowsView);
             }
         }
@@ -74,16 +51,25 @@ namespace BAMTestProject.ViewModels
 
         public bool MarketsView
         {
-            get
-            {
-                ViewsContentControl = _marketsViewModel;
-                return _marketsView;
-            }
+            get => _marketsView;
             set
             {
-                _marketsView = value;
                 ViewsContentControl = _marketsViewModel;
+                _marketsView = value;
                 NotifyOfPropertyChange(() => MarketsView);
+            }
+        }
+
+        private bool _broadcastsView;
+
+        public bool BroadcastsView
+        {
+            get => _broadcastsView;
+            set
+            {
+                ViewsContentControl = _broadcastsViewModel;
+                _broadcastsView = value;
+                NotifyOfPropertyChange(() => BroadcastsView);
             }
         }
 

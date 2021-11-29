@@ -10,6 +10,8 @@
                     <bootstrapper:MainBootstrapper x:Key="bootstrapper"/>
                 </ResourceDictionary>
                 <ResourceDictionary Source="Styles/Buttons.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Styles/ListBoxes.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Styles/Labels.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

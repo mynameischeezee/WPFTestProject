@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="ListBoxStyle" TargetType="ListBox">
+        <!--<Setter Property="Width" Value="1100px"></Setter>
+        <Setter Property="Height" Value="630px"></Setter>-->
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="FontSize" Value="14px"></Setter>
+    </Style>
+    <Style x:Key="ListBoxItem" TargetType="ListBoxItem">
+        <Setter Property="Margin" Value="0,5,0,0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Border Name="Border" Padding="7" SnapsToDevicePixels="True" Background="{TemplateBinding Background}">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="Foreground" Value="White"></Setter>
+                            <Setter Property="FontSize" Value="16px"></Setter>
+                            <Setter TargetName="Border" Property="Background" Value="LightSlateGray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

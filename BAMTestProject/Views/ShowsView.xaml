@@ -11,7 +11,17 @@
             <RowDefinition ></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" FontSize="30" VerticalAlignment="Center" Content="Shows" FontFamily="Segoe UI Symbol" Foreground="#FF111111"></Label>
+        <Label Grid.Row="0" Content="Shows" Style="{StaticResource HeaderLabel}"></Label>
         <Button Grid.Row="1" HorizontalContentAlignment="Right" VerticalAlignment="Bottom" Width="1" Height="1"></Button>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <ListView Grid.Row="1" ItemsSource="{Binding ShowsList}" Style="{StaticResource ListBoxStyle}" ItemContainerStyle="{StaticResource ListBoxItem}" SelectedItem="{Binding SelectedShow}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListView>
+            <Label x:Name="ShowNameDetail"></Label>
+        </StackPanel>
     </Grid>
 </UserControl>
