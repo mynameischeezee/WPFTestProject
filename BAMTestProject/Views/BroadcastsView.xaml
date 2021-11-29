@@ -11,6 +11,43 @@
             <RowDefinition ></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Broadcasts" Style="{StaticResource HeaderLabel}"></Label> 
+        <Label Grid.Row="0" Content="Broadcasts" Style="{StaticResource HeaderLabel}"></Label>
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ListView Grid.Row="1" ItemsSource="{Binding BroadcastsList}" Style="{StaticResource ListBoxStyle}"
+                          ItemContainerStyle="{StaticResource ListBoxItem}" SelectedItem="{Binding SelectedBroadcast}"
+                          Width="800px" Height="200px">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Show.Name}"></Label>
+                                <Label Content="{Binding Market.Name}"></Label>
+                                <Label Content="{Binding StartDate}"></Label>
+                                <Label Content="{Binding EndDate}"></Label>
+                                <Label Content="{Binding BroadcastDays}"></Label>
+                                <Label Content="{Binding ShowsAmount}"></Label>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListView>
+                <StackPanel Orientation="Vertical" Width="300px">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Id:" Style="{StaticResource DetailHeader}"></Label>
+                        <Label x:Name="MarketIdDetail" VerticalAlignment="Center" Style="{StaticResource DetailHeader}"
+                               FontSize="16px" FontFamily="Segoe UI Light">
+                        </Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Name:" Style="{StaticResource DetailHeader}"></Label>
+                        <TextBox x:Name="MarketNameDetail" Style="{StaticResource AddTextBoxStyle}" VerticalAlignment="Center" Width="180px"/>
+                        <Button x:Name="EditMarket" Width="30px" Height="30px" Content="Save" HorizontalAlignment="Left" Style="{StaticResource AddButtonStyle}" Margin="10,0,0,0"></Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="AddMarket" Width="40px" Height="40px" Content="Add" HorizontalAlignment="Left" Style="{StaticResource AddButtonStyle}"></Button>
+                <TextBox x:Name="AddMarketName" Width="200px" Style="{StaticResource AddTextBoxStyle}" VerticalAlignment="Center"></TextBox>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

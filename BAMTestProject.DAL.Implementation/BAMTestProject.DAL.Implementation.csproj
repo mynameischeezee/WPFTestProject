@@ -132,6 +132,14 @@
     <Compile Include="Migrations\202111261324314_FinalMigration.designer.cs">
       <DependentUpon>202111261324314_FinalMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111291526319_WeekDaysMigration.cs" />
+    <Compile Include="Migrations\202111291526319_WeekDaysMigration.designer.cs">
+      <DependentUpon>202111291526319_WeekDaysMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111291550302_WeekDaysMigrationAdd.cs" />
+    <Compile Include="Migrations\202111291550302_WeekDaysMigrationAdd.designer.cs">
+      <DependentUpon>202111291550302_WeekDaysMigrationAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Broadcast.cs" />
     <Compile Include="Models\Market.cs" />
@@ -157,6 +165,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111261324314_FinalMigration.resx">
       <DependentUpon>202111261324314_FinalMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111291526319_WeekDaysMigration.resx">
+      <DependentUpon>202111291526319_WeekDaysMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111291550302_WeekDaysMigrationAdd.resx">
+      <DependentUpon>202111291550302_WeekDaysMigrationAdd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

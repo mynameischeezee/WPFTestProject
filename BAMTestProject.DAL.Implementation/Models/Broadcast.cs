@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
+using System.Linq;
+using System.Windows.Documents;
 using BAMTestProject.DAL.Abstract.Model;
 
 namespace BAMTestProject.DAL.Implementation.Models
@@ -9,7 +13,18 @@ namespace BAMTestProject.DAL.Implementation.Models
         public int? ShowId { get; set; }
         [ForeignKey(nameof(ShowId))] public Show Show { get; set; }
         public DateTime StartDate { get; set; }
-        public DayOfWeek[] Days { get; set; }
+        public string BroadcastDays { get; set; }
+
+        [NotMapped]
+        public List<DayOfWeek> Days
+        {
+            get
+            {
+                var convertedDays = BroadcastDays.Split(',');
+                return convertedDays.Select(broadcastDay => (DayOfWeek)Enum.Parse(typeof(DayOfWeek), broadcastDay)).ToList();
+            }
+            set => BroadcastDays = string.Join(",", value.Select(p => p.ToString().ToArray()));
+        }
         public int ShowsAmount { get; set; }
         public DateTime EndDate { get; set; }
         public int? MarketId { get; set; }
