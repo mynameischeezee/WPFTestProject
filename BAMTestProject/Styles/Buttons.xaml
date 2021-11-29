@@ -8,6 +8,11 @@
         <Setter Property="Content" Value="X"></Setter>
         <Setter Property="Margin" Value="5"></Setter>
     </Style>
+    <Style x:Key="AddButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+    </Style>
     <Style x:Key="ToggleButtonStyle" TargetType="RadioButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
         <Setter Property="Height" Value="70px"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>

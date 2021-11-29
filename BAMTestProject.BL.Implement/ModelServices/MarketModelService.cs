@@ -17,14 +17,13 @@ namespace BAMTestProject.BL.Implement.ModelServices
                 dbContext.SaveChanges();
             }
         }
-
+        //TODO: rework edit system
         public Market Edit(int id, Market entity)
         {
             using (var dbContext = new ApplicationDbContext())
             {
                 var updatedMarket = dbContext.Markets.FirstOrDefault(x => x.Id == id);
-                updatedMarket = entity;
-                updatedMarket.Id = id;
+                updatedMarket.Name = entity.Name;
                 dbContext.SaveChanges();
                 return updatedMarket;
             }

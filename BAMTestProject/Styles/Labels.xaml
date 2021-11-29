@@ -6,4 +6,9 @@
         <Setter Property="FontFamily" Value="Segoe UI Symbol"></Setter>
         <Setter Property="Foreground" Value="#FF111111"></Setter>
     </Style>
+    <Style x:Key="DetailHeader" TargetType="Label" BasedOn="{StaticResource HeaderLabel}">
+        <Setter Property="FontSize" Value="16px"></Setter>
+        <Setter Property="FontFamily" Value="Segoe UI Light"></Setter>
+        <Setter Property="Foreground" Value="Gray"></Setter>
+    </Style>
 </ResourceDictionary>

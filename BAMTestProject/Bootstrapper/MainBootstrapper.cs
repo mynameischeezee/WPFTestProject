@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using Autofac;
+using BAMTestProject.BL.Implement.ModelServices;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Models;
 using BAMTestProject.ViewModels;
@@ -26,11 +27,14 @@ namespace BAMTestProject.Bootstrapper
             var builder = new ContainerBuilder();
             builder.RegisterType<WindowManager>().AsImplementedInterfaces().SingleInstance();
             builder.RegisterType<EventAggregator>().AsImplementedInterfaces().SingleInstance();
-            builder.RegisterType<ApplicationDbContext>().AsSelf();
+            builder.RegisterType<ApplicationDbContext>().AsSelf().SingleInstance();
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<ShowsViewModel>().AsSelf();
             builder.RegisterType<MarketsViewModel>().AsSelf();
             builder.RegisterType<BroadcastsViewModel>().AsSelf();
+            builder.RegisterType<ShowModelService>().AsSelf();
+            builder.RegisterType<MarketModelService>().AsSelf();
+            builder.RegisterType<BroadcastModelService>().AsSelf();
             _container = builder.Build();
         }
         protected override IEnumerable<object> GetAllInstances(Type service)

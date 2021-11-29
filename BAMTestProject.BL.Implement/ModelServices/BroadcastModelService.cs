@@ -17,7 +17,7 @@ namespace BAMTestProject.BL.Implement.ModelServices
                 dbContext.SaveChanges();
             }
         }
-
+        //TODO: rework edit system
         public Broadcast Edit(int id, Broadcast entity)
         {
             using (var dbContext = new ApplicationDbContext())

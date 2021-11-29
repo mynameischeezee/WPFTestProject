@@ -24,13 +24,13 @@ namespace BAMTestProject.BL.Implement.ModelServices
                 return dbContext.Shows.FirstOrDefault(x => x.Id == id);
             }
         }
-
+        //TODO: rework edit system
         public Show Edit(int id,Show entity)
         {
             using (var dbContext = new ApplicationDbContext())
             {
                 var updatedShow = dbContext.Shows.FirstOrDefault(x => x.Id == id);
-                updatedShow = entity;
+                updatedShow.Name = entity.Name;
                 dbContext.SaveChanges();
                 return updatedShow;
             }
