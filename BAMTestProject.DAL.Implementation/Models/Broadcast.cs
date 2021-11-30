@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Globalization;
 using System.Linq;
-using System.Windows.Documents;
 using BAMTestProject.DAL.Abstract.Model;
 
 namespace BAMTestProject.DAL.Implementation.Models

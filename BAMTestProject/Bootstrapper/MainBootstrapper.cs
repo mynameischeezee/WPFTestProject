@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using Autofac;
 using BAMTestProject.BL.Implement.ModelServices;
 using BAMTestProject.DAL.Implementation;
-using BAMTestProject.DAL.Implementation.Models;
 using BAMTestProject.ViewModels;
 using Caliburn.Micro;
 

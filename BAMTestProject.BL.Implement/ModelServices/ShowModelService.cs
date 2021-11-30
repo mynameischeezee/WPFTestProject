@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using BAMTestProject.BL.Abstract.CrudService;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Models;
@@ -8,42 +7,39 @@ namespace BAMTestProject.BL.Implement.ModelServices
 {
     public class ShowModelService : ICrudService<Show>
     {
-        public void Insert(Show entity)
-        {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                dbContext.Shows.Add(entity);
-                dbContext.SaveChanges();
-            }
-        }
+        private readonly ApplicationDbContext _dbContext;
 
-        public Show Read(int id)
+        public ShowModelService(ApplicationDbContext dbContext)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                return dbContext.Shows.FirstOrDefault(x => x.Id == id);
-            }
-        }
-        //TODO: rework edit system
-        public Show Edit(int id,Show entity)
-        {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                var updatedShow = dbContext.Shows.FirstOrDefault(x => x.Id == id);
-                updatedShow.Name = entity.Name;
-                dbContext.SaveChanges();
-                return updatedShow;
-            }
+            _dbContext = dbContext;
         }
 
         public void Delete(int id)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                var showToDelete = dbContext.Shows.FirstOrDefault(x => x.Id == id);
-                dbContext.Shows.Remove(showToDelete);
-                dbContext.SaveChanges();
-            }
+            var show = _dbContext.Shows.FirstOrDefault(x => x.Id == id);
+            if (show != null) _dbContext.Shows.Remove(show);
+            _dbContext.SaveChanges();
+        }
+
+        //TODO: rework edit system
+        public Show Edit(int id, Show entity)
+        {
+            var show = _dbContext.Shows.FirstOrDefault(x => x.Id == id);
+            show = entity;
+            show.Id = id;
+            _dbContext.SaveChanges();
+            return show;
+        }
+
+        public void Insert(Show entity)
+        {
+            _dbContext.Shows.Add(entity);
+            _dbContext.SaveChanges();
+        }
+
+        public Show Read(int id)
+        {
+            return _dbContext.Shows.FirstOrDefault(x => x.Id == id);
         }
     }
 }

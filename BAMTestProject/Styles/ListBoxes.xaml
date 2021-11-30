@@ -17,7 +17,6 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="true">
                             <Setter Property="Foreground" Value="White"></Setter>
-                            
                             <Setter TargetName="Border" Property="Background" Value="LightSlateGray"/>
                         </Trigger>
                     </ControlTemplate.Triggers>

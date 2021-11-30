@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using BAMTestProject.BL.Abstract.CrudService;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Models;
@@ -8,43 +7,39 @@ namespace BAMTestProject.BL.Implement.ModelServices
 {
     public class MarketModelService : ICrudService<Market>
     {
+        private readonly ApplicationDbContext _dbContext;
+
+        public MarketModelService(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public void Delete(int id)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                var marketToDelete = dbContext.Markets.FirstOrDefault(x => x.Id == id);
-                dbContext.Markets.Remove(marketToDelete);
-                dbContext.SaveChanges();
-            }
+            var market = _dbContext.Markets.FirstOrDefault(x => x.Id == id);
+            if (market != null) _dbContext.Markets.Remove(market);
+            _dbContext.SaveChanges();
         }
+
         //TODO: rework edit system
         public Market Edit(int id, Market entity)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                var updatedMarket = dbContext.Markets.FirstOrDefault(x => x.Id == id);
-                updatedMarket.Id = id;
-                updatedMarket.Name = entity.Name;
-                dbContext.SaveChanges();
-                return updatedMarket;
-            }
+            var market = _dbContext.Markets.FirstOrDefault(x => x.Id == id);
+            market = entity;
+            market.Id = id;
+            _dbContext.SaveChanges();
+            return market;
         }
 
         public void Insert(Market entity)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                dbContext.Markets.Add(entity);
-                dbContext.SaveChanges();
-            }
+            _dbContext.Markets.Add(entity);
+            _dbContext.SaveChanges();
         }
 
         public Market Read(int id)
         {
-            using (var dbContext = new ApplicationDbContext())
-            {
-                return dbContext.Markets.FirstOrDefault(x => x.Id == id);
-            }
+            return _dbContext.Markets.FirstOrDefault(x => x.Id == id);
         }
     }
 }

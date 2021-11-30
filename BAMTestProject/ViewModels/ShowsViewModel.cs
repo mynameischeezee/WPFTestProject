@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.Entity;
-using System.Linq;
-using System.Windows.Documents;
+﻿using System.Collections.ObjectModel;
 using BAMTestProject.BL.Implement.ModelServices;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Models;
@@ -12,7 +8,7 @@ namespace BAMTestProject.ViewModels
 {
     public class ShowsViewModel : Screen
     {
-        private readonly ApplicationDbContext _dbContext;
+        private ApplicationDbContext _dbContext;
         private readonly ShowModelService _showModelService;
         public ShowsViewModel(ApplicationDbContext dbContext,ShowModelService showModelService)
         {
@@ -51,6 +47,12 @@ namespace BAMTestProject.ViewModels
 
         private int _showIdDetail;
 
+        public int Number
+        {
+            get => _number;
+            set => _number = value;
+        }
+
         public int ShowIdDetail
         {
             get => _showIdDetail;
@@ -74,6 +76,8 @@ namespace BAMTestProject.ViewModels
         }
 
         private string _addShowName;
+        private int _number;
+
         public string AddShowName
         {
             get => _addShowName;
