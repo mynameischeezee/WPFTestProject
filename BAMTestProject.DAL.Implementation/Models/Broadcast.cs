@@ -23,7 +23,7 @@ namespace BAMTestProject.DAL.Implementation.Models
                 var convertedDays = BroadcastDays.Split(',');
                 return convertedDays.Select(broadcastDay => (DayOfWeek)Enum.Parse(typeof(DayOfWeek), broadcastDay)).ToList();
             }
-            set => BroadcastDays = string.Join(",", value.Select(p => p.ToString().ToArray()));
+            set => BroadcastDays = string.Join(",", value.Select(x => x.ToString()).ToArray());
         }
         public int ShowsAmount { get; set; }
         public DateTime EndDate { get; set; }

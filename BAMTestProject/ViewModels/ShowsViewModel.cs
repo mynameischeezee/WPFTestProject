@@ -12,7 +12,7 @@ namespace BAMTestProject.ViewModels
 {
     public class ShowsViewModel : Screen
     {
-        private ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
         private readonly ShowModelService _showModelService;
         public ShowsViewModel(ApplicationDbContext dbContext,ShowModelService showModelService)
         {

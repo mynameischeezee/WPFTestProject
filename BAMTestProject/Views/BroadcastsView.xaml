@@ -45,8 +45,21 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="AddMarket" Width="40px" Height="40px" Content="Add" HorizontalAlignment="Left" Style="{StaticResource AddButtonStyle}"></Button>
-                <TextBox x:Name="AddMarketName" Width="200px" Style="{StaticResource AddTextBoxStyle}" VerticalAlignment="Center"></TextBox>
+                <Button x:Name="AddBroadcast" Width="40px" Height="20px" Content="Add" HorizontalAlignment="Left" Style="{StaticResource AddButtonStyle}" Margin="0,0,10,0"></Button>
+                <ComboBox x:Name="AddShowsList" Height="20px" SelectedItem="{Binding AddSelectedShow}" Width="100"></ComboBox>
+                <ComboBox x:Name="AddMarketsList" Height="20px" SelectedItem="{Binding AddSelectedMarket}" Width="100"></ComboBox>
+                <DatePicker x:Name="AddStartDate" Height="20px" Margin="10,0,0,0"></DatePicker>
+                <DatePicker x:Name="AddEndDate" Height="20px"></DatePicker>
+                <StackPanel Orientation="Vertical"  Margin="10,0,0,0">
+                    <CheckBox x:Name="AddMondayBroadcast" Content="Monday"></CheckBox>
+                    <CheckBox x:Name="AddTuesdayBroadcast" Content="Tuesday"></CheckBox>
+                    <CheckBox x:Name="AddWednesdayBroadcast" Content="Wednesday"></CheckBox>
+                    <CheckBox x:Name="AddThursdayBroadcast" Content="Thursday"></CheckBox>
+                    <CheckBox x:Name="AddFridayBroadcast" Content="Friday"></CheckBox>
+                    <CheckBox x:Name="AddSaturdayBroadcast" Content="Saturday"></CheckBox>
+                    <CheckBox x:Name="AddSundayBroadcast" Content="Sunday"></CheckBox>
+                </StackPanel>
+                <TextBox x:Name="AddBroadcastViewsCount" Height="20px" Width="50" Margin="10" Style="{StaticResource AddTextBoxStyle}"></TextBox>
             </StackPanel>
         </StackPanel>
     </Grid>
