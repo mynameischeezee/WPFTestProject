@@ -18,7 +18,7 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CloseButtonStyle}" x:Name="Close"></Button>
+        <Button Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CloseButtonStyle}" x:Name="CloseWindow"></Button>
         <ContentControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="ViewsContentControl"></ContentControl>
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
             <RadioButton GroupName="Views" Content="Broadcasts" Style="{StaticResource ToggleButtonStyle}" x:Name="BroadcastsView"/>

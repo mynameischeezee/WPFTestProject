@@ -10,6 +10,12 @@ namespace BAMTestProject.ViewModels
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly MarketModelService _marketModelService;
+        private Market _selectedMarket;
+        private int _marketIdDetail;
+        private string _marketNameDetail;
+        private string _addMarketName;
+
+        public bool CanAddMarket => !string.IsNullOrWhiteSpace(_addMarketName);
 
         public MarketsViewModel(ApplicationDbContext dbContext, MarketModelService marketModelService)
         {
@@ -35,8 +41,6 @@ namespace BAMTestProject.ViewModels
             }
         }
 
-        private Market _selectedMarket;
-
         public Market SelectedMarket
         {
             get => _selectedMarket;
@@ -49,8 +53,6 @@ namespace BAMTestProject.ViewModels
             }
         }
 
-        private int _marketIdDetail;
-
         public int MarketIdDetail
         {
             get => _marketIdDetail;
@@ -60,8 +62,6 @@ namespace BAMTestProject.ViewModels
                 NotifyOfPropertyChange(() => MarketIdDetail);
             }
         }
-
-        private string _marketNameDetail;
 
         public string MarketNameDetail
         {
@@ -73,8 +73,6 @@ namespace BAMTestProject.ViewModels
                 NotifyOfPropertyChange(() => CanEditMarket);
             }
         }
-
-        private string _addMarketName;
 
         public string AddMarketName
         {
@@ -95,8 +93,6 @@ namespace BAMTestProject.ViewModels
             _marketModelService.Edit(_selectedMarket.Id, marketToEdit);
             NotifyOfPropertyChange(() => MarketsList);
         }
-
-        public bool CanAddMarket => !string.IsNullOrWhiteSpace(_addMarketName);
 
         public void AddMarket()
         {

@@ -1,26 +1,25 @@
 ﻿using System;
-using BAMTestProject.DAL.Implementation;
 using Caliburn.Micro;
 
 namespace BAMTestProject.ViewModels
 {
     public class MainViewModel : Screen
     {
-        public ApplicationDbContext DbContext { get; }
         private readonly BroadcastsViewModel _broadcastsViewModel;
         private readonly ShowsViewModel _showsViewModel;
         private readonly MarketsViewModel _marketsViewModel;
+        private Screen _viewsContentControl;
+        private bool _showsView;
+        private bool _marketsView;
+        private bool _broadcastsView;
 
         public MainViewModel(BroadcastsViewModel broadcastsViewModel, ShowsViewModel showsViewModel,
-            MarketsViewModel marketsViewModel, ApplicationDbContext dbContext)
+            MarketsViewModel marketsViewModel)
         {
             _broadcastsViewModel = broadcastsViewModel;
             _marketsViewModel = marketsViewModel;
             _showsViewModel = showsViewModel;
-            DbContext = dbContext;
         }
-
-        private Screen _viewsContentControl;
 
         public Screen ViewsContentControl
         {
@@ -31,8 +30,6 @@ namespace BAMTestProject.ViewModels
                 NotifyOfPropertyChange(() => ViewsContentControl);
             }
         }
-
-        private bool _showsView;
 
         public bool ShowsView
         {
@@ -45,8 +42,6 @@ namespace BAMTestProject.ViewModels
             }
         }
 
-        private bool _marketsView;
-
         public bool MarketsView
         {
             get => _marketsView;
@@ -57,8 +52,6 @@ namespace BAMTestProject.ViewModels
                 NotifyOfPropertyChange(() => MarketsView);
             }
         }
-
-        private bool _broadcastsView;
 
         public bool BroadcastsView
         {
@@ -71,7 +64,7 @@ namespace BAMTestProject.ViewModels
             }
         }
 
-        public void Close()
+        public void CloseWindow()
         {
             Environment.Exit(0);
         }

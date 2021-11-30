@@ -8,16 +8,24 @@ namespace BAMTestProject.ViewModels
 {
     public class ShowsViewModel : Screen
     {
-        private ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContext _dbContext;
         private readonly ShowModelService _showModelService;
-        public ShowsViewModel(ApplicationDbContext dbContext,ShowModelService showModelService)
+        private ObservableCollection<Show> _showsList;
+        private Show _selectedShow;
+        private int _showIdDetail;
+        private string _showNameDetail;
+        private string _addShowName;
+
+        public bool CanEditShow => !string.IsNullOrWhiteSpace(_showNameDetail);
+
+        public ShowsViewModel(ApplicationDbContext dbContext, ShowModelService showModelService)
         {
             _dbContext = dbContext;
             _showModelService = showModelService;
             SelectedShow = ShowsList[0];
         }
+
         // TODO: fix list updating on editing
-        private ObservableCollection<Show> _showsList;
         public ObservableCollection<Show> ShowsList
         {
             get
@@ -28,11 +36,10 @@ namespace BAMTestProject.ViewModels
             set
             {
                 _showsList = value;
-                NotifyOfPropertyChange(()=> ShowsList);
+                NotifyOfPropertyChange(() => ShowsList);
             }
         }
 
-        private Show _selectedShow;
         public Show SelectedShow
         {
             get => _selectedShow;
@@ -41,16 +48,8 @@ namespace BAMTestProject.ViewModels
                 _selectedShow = value;
                 ShowNameDetail = value.Name;
                 ShowIdDetail = value.Id;
-                NotifyOfPropertyChange(()=> SelectedShow);
+                NotifyOfPropertyChange(() => SelectedShow);
             }
-        }
-
-        private int _showIdDetail;
-
-        public int Number
-        {
-            get => _number;
-            set => _number = value;
         }
 
         public int ShowIdDetail
@@ -58,25 +57,21 @@ namespace BAMTestProject.ViewModels
             get => _showIdDetail;
             set
             {
-                    _showIdDetail = value;
-                    NotifyOfPropertyChange(() => ShowIdDetail);
+                _showIdDetail = value;
+                NotifyOfPropertyChange(() => ShowIdDetail);
             }
         }
-        private string _showNameDetail;
-        public string ShowNameDetail 
-        { 
+
+        public string ShowNameDetail
+        {
             get => _showNameDetail;
             set
             {
                 _showNameDetail = value;
-                NotifyOfPropertyChange(()=> ShowNameDetail);
-                NotifyOfPropertyChange(()=> CanEditShow);
+                NotifyOfPropertyChange(() => ShowNameDetail);
+                NotifyOfPropertyChange(() => CanEditShow);
             }
-
         }
-
-        private string _addShowName;
-        private int _number;
 
         public string AddShowName
         {
@@ -84,27 +79,26 @@ namespace BAMTestProject.ViewModels
             set
             {
                 _addShowName = value;
-                NotifyOfPropertyChange(()=> AddShowName);
-                NotifyOfPropertyChange(()=> CanAddShow);
+                NotifyOfPropertyChange(() => AddShowName);
+                NotifyOfPropertyChange(() => CanAddShow);
             }
         }
-        public bool CanEditShow => !string.IsNullOrWhiteSpace(_showNameDetail);
 
         public void EditShow()
         {
-            Show showToEdit = new Show() { Name = _showNameDetail };
+            Show showToEdit = new Show() {Name = _showNameDetail};
             _showModelService.Edit(_selectedShow.Id, showToEdit);
             NotifyOfPropertyChange(() => ShowsList);
         }
+
         public bool CanAddShow => !string.IsNullOrWhiteSpace(_addShowName);
 
         public void AddShow()
         {
-            Show showToAdd = new Show() { Name = _addShowName };
+            Show showToAdd = new Show() {Name = _addShowName};
             _showModelService.Insert(showToAdd);
             AddShowName = "";
-            NotifyOfPropertyChange(()=> ShowsList);
+            NotifyOfPropertyChange(() => ShowsList);
         }
-
     }
 }
