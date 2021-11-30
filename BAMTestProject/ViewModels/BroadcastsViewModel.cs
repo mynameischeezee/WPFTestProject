@@ -21,15 +21,9 @@ namespace BAMTestProject.ViewModels
         private Market _addSelectedMarket;
         private DateTime _addStartDate;
         private DateTime _addEndDate;
-        private bool _addMondayBroadcast;
-        private bool _addTuesdayBroadcast;
-        private bool _addWednesdayBroadcast;
-        private bool _addThursdayBroadcast;
-        private bool _addFridayBroadcast;
-        private bool _addSaturdayBroadcast;
-        private bool _addSundayBroadcast;
         private string _addBroadcastViewsCount;
-        private readonly List<DayOfWeek> _broadcastDays;
+
+        public ObservableCollection<DayOfWeekViewModel> DaysOfWeek { get; set; }
 
         public BroadcastsViewModel(ApplicationDbContext dbContext, BroadcastModelService broadcastsModelService)
         {
@@ -37,9 +31,10 @@ namespace BAMTestProject.ViewModels
             _broadcastsModelService = broadcastsModelService;
             AddShowsList = new ObservableCollection<string>(dbContext.Shows.Select(x => x.Name));
             AddMarketsList = new ObservableCollection<string>(dbContext.Markets.Select(x => x.Name));
-            _broadcastDays = new List<DayOfWeek>();
             AddStartDate = DateTime.Today;
             AddEndDate = DateTime.Today;
+            var days = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().Select(x => new DayOfWeekViewModel() { DayOfWeek = x });
+            DaysOfWeek = new ObservableCollection<DayOfWeekViewModel>(days);
         }
         public Broadcast SelectedBroadcast
         {
@@ -127,132 +122,6 @@ namespace BAMTestProject.ViewModels
             }
         }
 
-        public bool AddMondayBroadcast
-        {
-            get => _addMondayBroadcast;
-            set
-            {
-                _addMondayBroadcast = value;
-                NotifyOfPropertyChange(() => AddMondayBroadcast);
-                if (_addMondayBroadcast)
-                {
-                    _broadcastDays.Add(DayOfWeek.Monday);
-                }
-                else
-                {
-                    _broadcastDays.Remove(DayOfWeek.Monday);
-                }
-            }
-        }
-
-        public bool AddTuesdayBroadcast
-        {
-            get => _addTuesdayBroadcast;
-            set
-            {
-                _addTuesdayBroadcast = value;
-                NotifyOfPropertyChange(() => AddTuesdayBroadcast);
-                if (_addTuesdayBroadcast)
-                {
-                    _broadcastDays.Add(DayOfWeek.Tuesday);
-                }
-                else
-                {
-                    _broadcastDays.Remove(DayOfWeek.Tuesday);
-                }
-            }
-        }
-
-        public bool AddWednesdayBroadcast
-        {
-            get => _addWednesdayBroadcast;
-            set
-            {
-                _addWednesdayBroadcast = value;
-                NotifyOfPropertyChange(() => AddWednesdayBroadcast);
-                if (_addWednesdayBroadcast)
-                {
-                    _broadcastDays.Add(DayOfWeek.Wednesday);
-                }
-                else
-                {
-                    _broadcastDays.Remove(DayOfWeek.Wednesday);
-                }
-            }
-        }
-
-        public bool AddThursdayBroadcast
-        {
-            get => _addThursdayBroadcast;
-            set
-            {
-                _addThursdayBroadcast = value;
-                NotifyOfPropertyChange(() => AddThursdayBroadcast);
-                if (_addThursdayBroadcast)
-                {
-                    _broadcastDays.Add(DayOfWeek.Thursday);
-                }
-                else
-                {
-                    _broadcastDays.Remove(DayOfWeek.Thursday);
-                }
-            }
-        }
-
-        public bool AddFridayBroadcast
-        {
-            get => _addFridayBroadcast;
-            set
-            {
-                _addFridayBroadcast = value;
-                NotifyOfPropertyChange(() => AddFridayBroadcast);
-                if (_addFridayBroadcast)
-                {
-                    _broadcastDays.Add(DayOfWeek.Friday);
-                }
-                else
-                {
-                    _broadcastDays.Remove(DayOfWeek.Friday);
-                }
-            }
-        }
-
-        public bool AddSaturdayBroadcast
-        {
-            get => _addSaturdayBroadcast;
-            set
-            {
-                _addSaturdayBroadcast = value;
-                NotifyOfPropertyChange(() => AddSaturdayBroadcast);
-                if (_addSaturdayBroadcast)
-                {
-                    _broadcastDays.Add(DayOfWeek.Saturday);
-                }
-                else
-                {
-                    _broadcastDays.Remove(DayOfWeek.Saturday);
-                }
-            }
-        }
-
-        public bool AddSundayBroadcast
-        {
-            get => _addSundayBroadcast;
-            set
-            {
-                _addSundayBroadcast = value;
-                NotifyOfPropertyChange(() => AddSundayBroadcast);
-                if (_addSundayBroadcast)
-                {
-                    _broadcastDays.Add(DayOfWeek.Sunday);
-                }
-                else
-                {
-                    _broadcastDays.Remove(DayOfWeek.Sunday);
-                }
-            }
-        }
-
         public string AddBroadcastViewsCount
         {
             get => Convert.ToString(_addBroadcastViewsCount);
@@ -268,13 +137,12 @@ namespace BAMTestProject.ViewModels
         {
             Broadcast broadcastToAdd = new Broadcast()
             {
-
                 MarketId = _addSelectedMarket.Id,
                 ShowId = _addSelectedShow.Id,
                 ShowsAmount = Convert.ToInt32(AddBroadcastViewsCount),
                 EndDate = AddEndDate,
                 StartDate = AddStartDate,
-                Days = _broadcastDays
+                Days = DaysOfWeek.Where(x => x.IsSelected).Select(x => x.DayOfWeek).ToList()
             };
             _broadcastsModelService.Insert(broadcastToAdd);
             NotifyOfPropertyChange(() => BroadcastsList);
