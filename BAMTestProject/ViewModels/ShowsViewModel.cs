@@ -33,11 +33,7 @@ namespace BAMTestProject.ViewModels
                 _showsList = new ObservableCollection<Show>(_dbContext.Shows);
                 return _showsList;
             }
-            set
-            {
-                _showsList = value;
-                NotifyOfPropertyChange(() => ShowsList);
-            }
+            set => Set(ref _showsList, value, nameof(ShowsList));
         }
 
         public Show SelectedShow
@@ -45,21 +41,16 @@ namespace BAMTestProject.ViewModels
             get => _selectedShow;
             set
             {
-                _selectedShow = value;
                 ShowNameDetail = value.Name;
                 ShowIdDetail = value.Id;
-                NotifyOfPropertyChange(() => SelectedShow);
+                Set(ref _selectedShow, value, nameof(SelectedShow));
             }
         }
 
         public int ShowIdDetail
         {
             get => _showIdDetail;
-            set
-            {
-                _showIdDetail = value;
-                NotifyOfPropertyChange(() => ShowIdDetail);
-            }
+            set => Set(ref _showIdDetail, value, nameof(ShowIdDetail));
         }
 
         public string ShowNameDetail
@@ -67,8 +58,7 @@ namespace BAMTestProject.ViewModels
             get => _showNameDetail;
             set
             {
-                _showNameDetail = value;
-                NotifyOfPropertyChange(() => ShowNameDetail);
+                Set(ref _showNameDetail, value, nameof(ShowNameDetail));
                 NotifyOfPropertyChange(() => CanEditShow);
             }
         }
@@ -78,8 +68,7 @@ namespace BAMTestProject.ViewModels
             get => _addShowName;
             set
             {
-                _addShowName = value;
-                NotifyOfPropertyChange(() => AddShowName);
+                Set(ref _addShowName, value, nameof(AddShowName));
                 NotifyOfPropertyChange(() => CanAddShow);
             }
         }

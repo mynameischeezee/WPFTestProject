@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using BAMTestProject.BL.Implement.ModelServices;
@@ -39,11 +38,7 @@ namespace BAMTestProject.ViewModels
         public Broadcast SelectedBroadcast
         {
             get => _selectedBroadcast;
-            set
-            {
-                _selectedBroadcast = value;
-                NotifyOfPropertyChange(() => SelectedBroadcast);
-            }
+            set => Set(ref _selectedBroadcast, value, nameof(SelectedBroadcast));
         }
 
         public ObservableCollection<Broadcast> BroadcastsList
@@ -53,31 +48,19 @@ namespace BAMTestProject.ViewModels
                 _broadcastsList = new ObservableCollection<Broadcast>(_dbContext.Broadcasts);
                 return _broadcastsList;
             }
-            set
-            {
-                _broadcastsList = value;
-                NotifyOfPropertyChange(() => BroadcastsList);
-            }
+            set => Set(ref _broadcastsList, value, nameof(BroadcastsList));
         }
 
         public ObservableCollection<string> AddShowsList
         {
             get => _addShowsList;
-            set
-            {
-                _addShowsList = value;
-                NotifyOfPropertyChange(() => AddShowsList);
-            }
+            set => Set(ref _addShowsList, value, nameof(AddShowsList));
         }
 
         public ObservableCollection<string> AddMarketsList
         {
             get => _addMarketsList;
-            set
-            {
-                _addMarketsList = value;
-                NotifyOfPropertyChange(() => AddMarketsList);
-            }
+            set => Set(ref _addMarketsList, value, nameof(AddMarketsList));
         }
 
         public string AddSelectedShow
@@ -105,21 +88,13 @@ namespace BAMTestProject.ViewModels
         public DateTime AddStartDate
         {
             get => _addStartDate;
-            set
-            {
-                _addStartDate = value;
-                NotifyOfPropertyChange(() => AddStartDate);
-            }
+            set => Set(ref _addStartDate, value, nameof(AddStartDate));
         }
 
         public DateTime AddEndDate
         {
             get => _addEndDate;
-            set
-            {
-                _addEndDate = value;
-                NotifyOfPropertyChange(() => AddEndDate);
-            }
+            set => Set(ref _addEndDate, value, nameof(AddEndDate));
         }
 
         public string AddBroadcastViewsCount
@@ -127,8 +102,7 @@ namespace BAMTestProject.ViewModels
             get => Convert.ToString(_addBroadcastViewsCount);
             set
             {
-                _addBroadcastViewsCount = value;
-                NotifyOfPropertyChange(() => AddBroadcastViewsCount);
+                Set(ref _addBroadcastViewsCount, value, nameof(AddBroadcastViewsCount));
                 NotifyOfPropertyChange(() => CanAddBroadcast);
             }
         }

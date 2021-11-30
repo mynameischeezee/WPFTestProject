@@ -24,11 +24,7 @@ namespace BAMTestProject.ViewModels
         public Screen ViewsContentControl
         {
             get => _viewsContentControl;
-            set
-            {
-                _viewsContentControl = value;
-                NotifyOfPropertyChange(() => ViewsContentControl);
-            }
+            set => Set(ref _viewsContentControl, value, nameof(ViewsContentControl));
         }
 
         public bool ShowsView
@@ -37,8 +33,7 @@ namespace BAMTestProject.ViewModels
             set
             {
                 ViewsContentControl = _showsViewModel;
-                _showsView = value;
-                NotifyOfPropertyChange(() => ShowsView);
+                Set(ref _showsView, value, nameof(ShowsView));
             }
         }
 
@@ -48,8 +43,7 @@ namespace BAMTestProject.ViewModels
             set
             {
                 ViewsContentControl = _marketsViewModel;
-                _marketsView = value;
-                NotifyOfPropertyChange(() => MarketsView);
+                Set(ref _marketsView, value, nameof(MarketsView));
             }
         }
 
@@ -59,8 +53,7 @@ namespace BAMTestProject.ViewModels
             set
             {
                 ViewsContentControl = _broadcastsViewModel;
-                _broadcastsView = value;
-                NotifyOfPropertyChange(() => BroadcastsView);
+                Set(ref _broadcastsView, value, nameof(BroadcastsView));
             }
         }
 

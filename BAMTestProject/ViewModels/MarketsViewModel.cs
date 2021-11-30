@@ -34,11 +34,7 @@ namespace BAMTestProject.ViewModels
                 _marketsList = new ObservableCollection<Market>(_dbContext.Markets);
                 return _marketsList;
             }
-            set
-            {
-                _marketsList = value;
-                NotifyOfPropertyChange(() => MarketsList);
-            }
+            set => Set(ref _marketsList, value, nameof(MarketsList));
         }
 
         public Market SelectedMarket
@@ -46,21 +42,16 @@ namespace BAMTestProject.ViewModels
             get => _selectedMarket;
             set
             {
-                _selectedMarket = value;
                 MarketNameDetail = value.Name;
                 MarketIdDetail = value.Id;
-                NotifyOfPropertyChange(() => SelectedMarket);
+                Set(ref _selectedMarket, value, nameof(SelectedMarket));
             }
         }
 
         public int MarketIdDetail
         {
             get => _marketIdDetail;
-            set
-            {
-                _marketIdDetail = value;
-                NotifyOfPropertyChange(() => MarketIdDetail);
-            }
+            set => Set(ref _marketIdDetail, value, nameof(MarketIdDetail));
         }
 
         public string MarketNameDetail
@@ -68,8 +59,7 @@ namespace BAMTestProject.ViewModels
             get => _marketNameDetail;
             set
             {
-                _marketNameDetail = value;
-                NotifyOfPropertyChange(() => MarketNameDetail);
+                Set(ref _marketNameDetail, value, nameof(MarketNameDetail));
                 NotifyOfPropertyChange(() => CanEditMarket);
             }
         }
@@ -79,8 +69,7 @@ namespace BAMTestProject.ViewModels
             get => _addMarketName;
             set
             {
-                _addMarketName = value;
-                NotifyOfPropertyChange(() => AddMarketName);
+                Set(ref _addMarketName, value, nameof(AddMarketName));
                 NotifyOfPropertyChange(() => CanAddMarket);
             }
         }
