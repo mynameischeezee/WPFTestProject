@@ -17,7 +17,11 @@ namespace BAMTestProject.BL.Implement.ModelServices
         public void Delete(int id)
         {
             var market = _dbContext.Markets.FirstOrDefault(x => x.Id == id);
-            _dbContext.Broadcasts.ToList().RemoveAll(x => x.MarketId == id);
+            var broadcasts = _dbContext.Broadcasts.Where(x => x.MarketId == id);
+            foreach (var element in broadcasts)
+            {
+                _dbContext.Broadcasts.Remove(element);
+            }
             if (market != null) _dbContext.Markets.Remove(market);
             _dbContext.SaveChanges();
         }
