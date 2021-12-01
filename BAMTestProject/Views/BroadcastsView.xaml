@@ -60,6 +60,8 @@
                 <TextBox x:Name="AddBroadcastViewsCount" Height="20px" Width="50" Margin="10"
                          Style="{StaticResource AddTextBoxStyle}" />
             </StackPanel>
+            <Button Width="40" Height="40" x:Name="DeleteBroadcast" Content="Delete" HorizontalAlignment="Left"
+                    Style="{StaticResource AddButtonStyle}" Margin="0,0,10,0"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

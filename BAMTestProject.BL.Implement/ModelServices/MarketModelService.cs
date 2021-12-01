@@ -17,16 +17,16 @@ namespace BAMTestProject.BL.Implement.ModelServices
         public void Delete(int id)
         {
             var market = _dbContext.Markets.FirstOrDefault(x => x.Id == id);
+            _dbContext.Broadcasts.ToList().RemoveAll(x => x.MarketId == id);
             if (market != null) _dbContext.Markets.Remove(market);
             _dbContext.SaveChanges();
         }
 
-        //TODO: rework edit system
         public Market Edit(int id, Market entity)
         {
             var market = _dbContext.Markets.FirstOrDefault(x => x.Id == id);
-            market = entity;
-            market.Id = id;
+            _dbContext.Markets.Attach(market);
+            market.Name = entity.Name;
             _dbContext.SaveChanges();
             return market;
         }

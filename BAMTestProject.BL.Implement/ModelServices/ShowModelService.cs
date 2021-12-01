@@ -17,16 +17,16 @@ namespace BAMTestProject.BL.Implement.ModelServices
         public void Delete(int id)
         {
             var show = _dbContext.Shows.FirstOrDefault(x => x.Id == id);
+            _dbContext.Broadcasts.ToList().RemoveAll(x => x.ShowId == id);
             if (show != null) _dbContext.Shows.Remove(show);
             _dbContext.SaveChanges();
         }
 
-        //TODO: rework edit system
         public Show Edit(int id, Show entity)
         {
             var show = _dbContext.Shows.FirstOrDefault(x => x.Id == id);
-            show = entity;
-            show.Id = id;
+            _dbContext.Shows.Attach(show);
+            show.Name = entity.Name;
             _dbContext.SaveChanges();
             return show;
         }

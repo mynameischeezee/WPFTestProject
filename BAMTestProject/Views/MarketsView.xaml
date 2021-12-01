@@ -42,6 +42,8 @@
                 <Button x:Name="AddMarket" Width="40px" Height="40px" Content="Add" HorizontalAlignment="Left" Style="{StaticResource AddButtonStyle}"></Button>
                 <TextBox x:Name="AddMarketName" Width="200px" Style="{StaticResource AddTextBoxStyle}" VerticalAlignment="Center"></TextBox>
             </StackPanel>
+            <Button Width="40" Height="40" x:Name="DeleteMarket" Content="Delete" HorizontalAlignment="Left"
+                    Style="{StaticResource AddButtonStyle}" Margin="0,0,10,0"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

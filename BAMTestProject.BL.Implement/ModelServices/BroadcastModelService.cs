@@ -20,12 +20,20 @@ namespace BAMTestProject.BL.Implement.ModelServices
             if (broadcast != null) _dbContext.Broadcasts.Remove(broadcast);
             _dbContext.SaveChanges();
         }
-        //TODO: rework edit system
+
         public Broadcast Edit(int id, Broadcast entity)
         {
             var broadcast = _dbContext.Broadcasts.FirstOrDefault(x => x.Id == id);
-                broadcast = entity;
-                broadcast.Id = id;
+            _dbContext.Broadcasts.Attach(broadcast);
+                broadcast.Days = entity.Days;
+                broadcast.MarketId = entity.Id;
+                broadcast.ShowId = entity.ShowId;
+                broadcast.StartDate = entity.StartDate;
+                broadcast.EndDate = entity.EndDate;
+                broadcast.BroadcastDays = entity.BroadcastDays;
+                broadcast.ShowsAmount = entity.ShowsAmount;
+                broadcast.Show = entity.Show;
+                broadcast.Market = entity.Market;
                 _dbContext.SaveChanges();
                 return broadcast;
         }

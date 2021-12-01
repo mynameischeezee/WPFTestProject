@@ -68,7 +68,15 @@ namespace BAMTestProject.ViewModels
             get => _addSelectedShow == null ? " " : _addSelectedShow.Name;
             set
             {
-                _addSelectedShow = _dbContext.Shows.First(x => x.Name == value);
+                try
+                {
+                    _addSelectedShow = _dbContext.Shows.First(x => x.Name == value);
+                }
+                catch
+                {
+                    _addSelectedShow = new Show();
+                }
+                
                 NotifyOfPropertyChange(() => AddSelectedShow);
                 NotifyOfPropertyChange(() => CanAddBroadcast);
             }
@@ -79,7 +87,15 @@ namespace BAMTestProject.ViewModels
             get => _addSelectedMarket == null ? " " : _addSelectedMarket.Name;
             set
             {
-                _addSelectedMarket = _dbContext.Markets.First(x => x.Name == value);
+                try
+                {
+                    _addSelectedMarket = _dbContext.Markets.First(x => x.Name == value);
+
+                }
+                catch
+                {
+                    _addSelectedMarket = new Market();
+                }
                 NotifyOfPropertyChange(() => AddSelectedMarket);
                 NotifyOfPropertyChange(() => CanAddBroadcast);
             }
@@ -126,5 +142,19 @@ namespace BAMTestProject.ViewModels
             AddSelectedShow != null && AddMarketsList != null &&
             !string.IsNullOrWhiteSpace(AddBroadcastViewsCount) &&
             int.TryParse(AddBroadcastViewsCount, out _);
+
+        public void DeleteBroadcast()
+        {
+
+            _broadcastsModelService.Delete(SelectedBroadcast.Id);
+            NotifyOfPropertyChange(() => BroadcastsList);
+        }
+
+        public void Update()
+        {
+            NotifyOfPropertyChange(()=> BroadcastsList);
+            AddShowsList = new ObservableCollection<string>(_dbContext.Shows.Select(x => x.Name));
+            AddMarketsList = new ObservableCollection<string>(_dbContext.Markets.Select(x => x.Name));
+        }
     }
 }

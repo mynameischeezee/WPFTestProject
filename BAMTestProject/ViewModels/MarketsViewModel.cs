@@ -21,9 +21,7 @@ namespace BAMTestProject.ViewModels
         {
             _dbContext = dbContext;
             _marketModelService = marketModelService;
-            SelectedMarket = MarketsList[0];
         }
-        // TODO: fix list updating on editing
 
         private ObservableCollection<Market> _marketsList;
 
@@ -42,9 +40,12 @@ namespace BAMTestProject.ViewModels
             get => _selectedMarket;
             set
             {
-                MarketNameDetail = value.Name;
-                MarketIdDetail = value.Id;
-                Set(ref _selectedMarket, value, nameof(SelectedMarket));
+                if (value != null)
+                {
+                    MarketNameDetail = value.Name;
+                    MarketIdDetail = value.Id;
+                    Set(ref _selectedMarket, value, nameof(SelectedMarket));
+                }
             }
         }
 
@@ -88,6 +89,11 @@ namespace BAMTestProject.ViewModels
             var marketToAdd = new Market() {Name = _addMarketName};
             _marketModelService.Insert(marketToAdd);
             AddMarketName = "";
+            NotifyOfPropertyChange(() => MarketsList);
+        }
+        public void DeleteMarket()
+        {
+            _marketModelService.Delete(SelectedMarket.Id);
             NotifyOfPropertyChange(() => MarketsList);
         }
     }

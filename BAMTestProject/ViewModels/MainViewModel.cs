@@ -52,6 +52,7 @@ namespace BAMTestProject.ViewModels
             get => _broadcastsView;
             set
             {
+                _broadcastsViewModel.Update();
                 ViewsContentControl = _broadcastsViewModel;
                 Set(ref _broadcastsView, value, nameof(BroadcastsView));
             }

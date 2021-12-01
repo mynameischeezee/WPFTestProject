@@ -42,6 +42,8 @@
                 <Button x:Name="AddShow" Width="40px" Height="40px" Content="Add" HorizontalAlignment="Left" Style="{StaticResource AddButtonStyle}"></Button>
                 <TextBox x:Name="AddShowName" Width="200px" Style="{StaticResource AddTextBoxStyle}" VerticalAlignment="Center"></TextBox>
             </StackPanel>
+            <Button Width="40" Height="40" x:Name="DeleteShow" Content="Delete" HorizontalAlignment="Left"
+                    Style="{StaticResource AddButtonStyle}" Margin="0,0,10,0"></Button>
         </StackPanel>
     </Grid>
 </UserControl>

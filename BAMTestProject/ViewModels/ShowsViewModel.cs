@@ -25,7 +25,6 @@ namespace BAMTestProject.ViewModels
             SelectedShow = ShowsList[0];
         }
 
-        // TODO: fix list updating on editing
         public ObservableCollection<Show> ShowsList
         {
             get
@@ -41,9 +40,12 @@ namespace BAMTestProject.ViewModels
             get => _selectedShow;
             set
             {
-                ShowNameDetail = value.Name;
-                ShowIdDetail = value.Id;
-                Set(ref _selectedShow, value, nameof(SelectedShow));
+                if (value != null)
+                {
+                    ShowNameDetail = value.Name;
+                    ShowIdDetail = value.Id;
+                    Set(ref _selectedShow, value, nameof(SelectedShow));
+                }
             }
         }
 
@@ -87,6 +89,13 @@ namespace BAMTestProject.ViewModels
             Show showToAdd = new Show() {Name = _addShowName};
             _showModelService.Insert(showToAdd);
             AddShowName = "";
+            NotifyOfPropertyChange(() => ShowsList);
+        }
+
+        public void DeleteShow()
+        {
+
+            _showModelService.Delete(SelectedShow.Id);
             NotifyOfPropertyChange(() => ShowsList);
         }
     }
