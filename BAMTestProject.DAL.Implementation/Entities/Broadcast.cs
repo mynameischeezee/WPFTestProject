@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using BAMTestProject.DAL.Abstract.Model;
+using BAMTestProject.DAL.Implementation.BaseEntities;
 
-namespace BAMTestProject.DAL.Implementation.Models
+namespace BAMTestProject.DAL.Implementation.Entities
 {
-    public class Broadcast : AbstractModel
+    public class Broadcast : BaseEntity
     {
         public int ShowId { get; set; }
         [ForeignKey(nameof(ShowId))] public Show Show { get; set; }

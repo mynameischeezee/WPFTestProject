@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDBContext.cs" />
+    <Compile Include="BaseEntities\BaseEntity.cs" />
     <Compile Include="Migrations\202111260851352_FirstMigratiom.cs" />
     <Compile Include="Migrations\202111260851352_FirstMigratiom.designer.cs">
       <DependentUpon>202111260851352_FirstMigratiom.cs</DependentUpon>
@@ -157,20 +158,14 @@
       <DependentUpon>202112021410443_MarketOptionalForeignKeyRemoveMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Broadcast.cs" />
-    <Compile Include="Models\Market.cs" />
-    <Compile Include="Models\Show.cs" />
+    <Compile Include="Entities\Broadcast.cs" />
+    <Compile Include="Entities\Market.cs" />
+    <Compile Include="Entities\Show.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BAMTestProject.DAL.Abstract\BAMTestProject.DAL.Abstract.csproj">
-      <Project>{c321e1f5-b535-4d80-b10f-7187de64e57c}</Project>
-      <Name>BAMTestProject.DAL.Abstract</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202111260851352_FirstMigratiom.resx">

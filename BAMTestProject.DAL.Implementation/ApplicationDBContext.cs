@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using BAMTestProject.DAL.Implementation.Models;
+using BAMTestProject.DAL.Implementation.Entities;
 
 namespace BAMTestProject.DAL.Implementation
 {

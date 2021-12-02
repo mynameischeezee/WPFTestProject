@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using BAMTestProject.BL.Abstract.CrudService;
 using BAMTestProject.DAL.Implementation;
-using BAMTestProject.DAL.Implementation.Models;
+using BAMTestProject.DAL.Implementation.Entities;
 
 namespace BAMTestProject.BL.Implement.ModelServices
 {

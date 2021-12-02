@@ -7,15 +7,14 @@ namespace BAMTestProject.BL.Implement.Factory
 {
     public class BroadcastDtoFactory
     {
-        //TODO: Rename service
-        private readonly IBroadcastEndDateCalculator _calculationService;
-        public BroadcastDtoFactory(IBroadcastEndDateCalculator calculationService)
+        private readonly IBroadcastEndDateCalculator _calculator;
+        public BroadcastDtoFactory(IBroadcastEndDateCalculator calculator)
         {
-            _calculationService = calculationService;
+            _calculator = calculator;
         }
         public BroadcastDto Create(DateTime startDate, int viewsCount, List<DayOfWeek> daysOfWeeks)
         {
-            return new BroadcastDto { EndDate = _calculationService.Calculate(startDate, viewsCount, daysOfWeeks)};
+            return new BroadcastDto { EndDate = _calculator.Calculate(startDate, viewsCount, daysOfWeeks)};
         }
     }
 }

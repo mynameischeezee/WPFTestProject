@@ -137,10 +137,13 @@
     </Compile>
     <Compile Include="Bootstrapper\MainBootstrapper.cs" />
     <Compile Include="ViewModels\BroadcastsViewModel.cs" />
+    <Compile Include="ViewModels\BroadcastViewModel.cs" />
     <Compile Include="ViewModels\DayOfWeekViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MarketsViewModel.cs" />
+    <Compile Include="ViewModels\MarketViewModel.cs" />
     <Compile Include="ViewModels\ShowsViewModel.cs" />
+    <Compile Include="ViewModels\ShowViewModel.cs" />
     <Compile Include="Views\BroadcastsView.xaml.cs">
       <DependentUpon>BroadcastsView.xaml</DependentUpon>
     </Compile>
@@ -187,10 +190,6 @@
     <ProjectReference Include="..\BAMTestProject.BL.Implement\BAMTestProject.BL.Implementation.csproj">
       <Project>{1f26cf96-ce6d-4ad5-9e3f-dc69cc46918e}</Project>
       <Name>BAMTestProject.BL.Implementation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BAMTestProject.DAL.Abstract\BAMTestProject.DAL.Abstract.csproj">
-      <Project>{c321e1f5-b535-4d80-b10f-7187de64e57c}</Project>
-      <Name>BAMTestProject.DAL.Abstract</Name>
     </ProjectReference>
     <ProjectReference Include="..\BAMTestProject.DAL.Implementation\BAMTestProject.DAL.Implementation.csproj">
       <Project>{64a96d8d-03df-45a1-afe9-34e03802effb}</Project>

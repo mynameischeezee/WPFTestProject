@@ -5,7 +5,7 @@ using System.Linq;
 using BAMTestProject.BL.Abstract.Services;
 using BAMTestProject.BL.Implement.ModelServices;
 using BAMTestProject.DAL.Implementation;
-using BAMTestProject.DAL.Implementation.Models;
+using BAMTestProject.DAL.Implementation.Entities;
 using Caliburn.Micro;
 
 namespace BAMTestProject.ViewModels

@@ -136,10 +136,6 @@
       <Project>{854e4a5b-1766-48e0-ac5f-a80bbaacd8cb}</Project>
       <Name>BAMTestProject.BL.Abstract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BAMTestProject.DAL.Abstract\BAMTestProject.DAL.Abstract.csproj">
-      <Project>{C321E1F5-B535-4D80-B10F-7187DE64E57C}</Project>
-      <Name>BAMTestProject.DAL.Abstract</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BAMTestProject.DAL.Implementation\BAMTestProject.DAL.Implementation.csproj">
       <Project>{64a96d8d-03df-45a1-afe9-34e03802effb}</Project>
       <Name>BAMTestProject.DAL.Implementation</Name>
