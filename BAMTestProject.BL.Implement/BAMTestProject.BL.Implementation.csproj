@@ -122,9 +122,9 @@
     <Compile Include="BaseServices\IBroadcastEndDateCalculator.cs" />
     <Compile Include="DTO\BroadcastDto.cs" />
     <Compile Include="Factory\BroadcastDtoFactory.cs" />
-    <Compile Include="Repositories\BroadcastModelService.cs" />
-    <Compile Include="Repositories\MarketModelService.cs" />
-    <Compile Include="Repositories\ShowModelService.cs" />
+    <Compile Include="Repositories\BroadcastRepository.cs" />
+    <Compile Include="Repositories\MarketRepository.cs" />
+    <Compile Include="Repositories\ShowRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\BroadcastEndDateCalculator.cs" />
   </ItemGroup>

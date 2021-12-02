@@ -12,7 +12,7 @@ namespace BAMTestProject.ViewModels
     public class BroadcastsViewModel : Screen
     {
         private readonly ApplicationDbContext _dbContext;
-        //private readonly BroadcastModelService _broadcastsModelService;
+        //private readonly BroadcastRepository _broadcastsModelService;
         private ObservableCollection<Broadcast> _broadcastsList;
         private Broadcast _selectedBroadcast;
         private ObservableCollection<string> _addShowsList;

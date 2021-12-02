@@ -5,11 +5,11 @@ using BAMTestProject.DAL.Implementation.Entities;
 
 namespace BAMTestProject.BL.Implement.Repositories
 {
-    public class MarketModelService
+    public class MarketRepository
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public MarketModelService(ApplicationDbContext dbContext)
+        public MarketRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }

@@ -4,11 +4,11 @@ using BAMTestProject.DAL.Implementation.Entities;
 
 namespace BAMTestProject.BL.Implement.Repositories
 {
-    public class ShowModelService
+    public class ShowRepository
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public ShowModelService(ApplicationDbContext dbContext)
+        public ShowRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }

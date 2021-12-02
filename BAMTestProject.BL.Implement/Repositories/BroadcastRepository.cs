@@ -5,11 +5,11 @@ using BAMTestProject.DAL.Implementation.Entities;
 
 namespace BAMTestProject.BL.Implement.Repositories
 {
-    public class BroadcastModelService
+    public class BroadcastRepository
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public BroadcastModelService(ApplicationDbContext dbContext)
+        public BroadcastRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
