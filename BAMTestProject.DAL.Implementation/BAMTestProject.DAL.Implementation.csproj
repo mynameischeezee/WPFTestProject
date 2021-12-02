@@ -140,6 +140,22 @@
     <Compile Include="Migrations\202111291550302_WeekDaysMigrationAdd.designer.cs">
       <DependentUpon>202111291550302_WeekDaysMigrationAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112021323033_RemoveEndDateMigration.cs" />
+    <Compile Include="Migrations\202112021323033_RemoveEndDateMigration.designer.cs">
+      <DependentUpon>202112021323033_RemoveEndDateMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112021401493_OptionalForeignKeyRemoveMigration.cs" />
+    <Compile Include="Migrations\202112021401493_OptionalForeignKeyRemoveMigration.designer.cs">
+      <DependentUpon>202112021401493_OptionalForeignKeyRemoveMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112021409391_AnotherOptionalForeignKeyRemoveMigration.cs" />
+    <Compile Include="Migrations\202112021409391_AnotherOptionalForeignKeyRemoveMigration.designer.cs">
+      <DependentUpon>202112021409391_AnotherOptionalForeignKeyRemoveMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112021410443_MarketOptionalForeignKeyRemoveMigration.cs" />
+    <Compile Include="Migrations\202112021410443_MarketOptionalForeignKeyRemoveMigration.designer.cs">
+      <DependentUpon>202112021410443_MarketOptionalForeignKeyRemoveMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Broadcast.cs" />
     <Compile Include="Models\Market.cs" />
@@ -171,6 +187,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111291550302_WeekDaysMigrationAdd.resx">
       <DependentUpon>202111291550302_WeekDaysMigrationAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112021323033_RemoveEndDateMigration.resx">
+      <DependentUpon>202112021323033_RemoveEndDateMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112021401493_OptionalForeignKeyRemoveMigration.resx">
+      <DependentUpon>202112021401493_OptionalForeignKeyRemoveMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112021409391_AnotherOptionalForeignKeyRemoveMigration.resx">
+      <DependentUpon>202112021409391_AnotherOptionalForeignKeyRemoveMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112021410443_MarketOptionalForeignKeyRemoveMigration.resx">
+      <DependentUpon>202112021410443_MarketOptionalForeignKeyRemoveMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

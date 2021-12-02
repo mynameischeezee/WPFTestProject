@@ -17,12 +17,11 @@ namespace BAMTestProject.ViewModels
         private string _addShowName;
 
         public bool CanEditShow => !string.IsNullOrWhiteSpace(_showNameDetail);
-
+        //TODO: Create showVM (another one)
         public ShowsViewModel(ApplicationDbContext dbContext, ShowModelService showModelService)
         {
             _dbContext = dbContext;
             _showModelService = showModelService;
-            SelectedShow = ShowsList[0];
         }
 
         public ObservableCollection<Show> ShowsList

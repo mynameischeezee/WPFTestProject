@@ -121,6 +121,7 @@
   <ItemGroup>
     <Compile Include="CrudService\ICrudService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IBroadcastEndDateCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -8,7 +8,7 @@ namespace BAMTestProject.DAL.Implementation.Models
 {
     public class Broadcast : AbstractModel
     {
-        public int? ShowId { get; set; }
+        public int ShowId { get; set; }
         [ForeignKey(nameof(ShowId))] public Show Show { get; set; }
         public DateTime StartDate { get; set; }
         public string BroadcastDays { get; set; }
@@ -19,13 +19,15 @@ namespace BAMTestProject.DAL.Implementation.Models
             get
             {
                 var convertedDays = BroadcastDays.Split(',');
-                return convertedDays.Select(broadcastDay => (DayOfWeek)Enum.Parse(typeof(DayOfWeek), broadcastDay)).ToList();
+                return convertedDays.Select(broadcastDay => (DayOfWeek) Enum.Parse(typeof(DayOfWeek), broadcastDay))
+                    .ToList();
             }
             set => BroadcastDays = string.Join(",", value.Select(x => x.ToString()).ToArray());
         }
+
         public int ShowsAmount { get; set; }
-        public DateTime EndDate { get; set; }
-        public int? MarketId { get; set; }
+        [NotMapped] public DateTime EndDate { get; set; }
+        public int MarketId { get; set; }
         [ForeignKey(nameof(MarketId))] public Market Market { get; set; }
     }
 }

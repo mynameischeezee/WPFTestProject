@@ -19,5 +19,10 @@ namespace BAMTestProject.ViewModels
             get => _isSelected;
             set => Set(ref _isSelected, value, nameof(IsSelected));
         }
+
+        public static DayOfWeekViewModel Create(DayOfWeek dayOfWeek)
+        {
+            return new DayOfWeekViewModel{DayOfWeek = dayOfWeek};
+        }
     }
 }

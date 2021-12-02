@@ -16,7 +16,7 @@ namespace BAMTestProject.ViewModels
         private string _addMarketName;
 
         public bool CanAddMarket => !string.IsNullOrWhiteSpace(_addMarketName);
-
+        //TODO: Create marketVM (another one)
         public MarketsViewModel(ApplicationDbContext dbContext, MarketModelService marketModelService)
         {
             _dbContext = dbContext;
@@ -91,6 +91,7 @@ namespace BAMTestProject.ViewModels
             AddMarketName = "";
             NotifyOfPropertyChange(() => MarketsList);
         }
+
         public void DeleteMarket()
         {
             _marketModelService.Delete(SelectedMarket.Id);

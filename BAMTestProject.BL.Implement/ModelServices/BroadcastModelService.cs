@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity.Migrations;
+using System.Linq;
 using BAMTestProject.BL.Abstract.CrudService;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Models;
@@ -20,21 +21,12 @@ namespace BAMTestProject.BL.Implement.ModelServices
             if (broadcast != null) _dbContext.Broadcasts.Remove(broadcast);
             _dbContext.SaveChanges();
         }
-
+        //TODO: Rework edit system
         public Broadcast Edit(int id, Broadcast entity)
         {
             var broadcast = _dbContext.Broadcasts.FirstOrDefault(x => x.Id == id);
-            _dbContext.Broadcasts.Attach(broadcast);
-                broadcast.Days = entity.Days;
-                broadcast.MarketId = entity.Id;
-                broadcast.ShowId = entity.ShowId;
-                broadcast.StartDate = entity.StartDate;
-                broadcast.EndDate = entity.EndDate;
-                broadcast.BroadcastDays = entity.BroadcastDays;
-                broadcast.ShowsAmount = entity.ShowsAmount;
-                broadcast.Show = entity.Show;
-                broadcast.Market = entity.Market;
-                _dbContext.SaveChanges();
+            _dbContext.Broadcasts.AddOrUpdate(entity);
+            _dbContext.SaveChanges();
                 return broadcast;
         }
 

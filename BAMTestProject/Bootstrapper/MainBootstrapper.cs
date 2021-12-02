@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Windows;
 using Autofac;
+using BAMTestProject.BL.Abstract.Services;
+using BAMTestProject.BL.Implement.DTO;
+using BAMTestProject.BL.Implement.Factory;
 using BAMTestProject.BL.Implement.ModelServices;
+using BAMTestProject.BL.Implement.Services;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.ViewModels;
 using Caliburn.Micro;
@@ -33,6 +37,9 @@ namespace BAMTestProject.Bootstrapper
             builder.RegisterType<ShowModelService>().AsSelf();
             builder.RegisterType<MarketModelService>().AsSelf();
             builder.RegisterType<BroadcastModelService>().AsSelf();
+            builder.RegisterType<BroadcastEndDateCalculator>().As<IBroadcastEndDateCalculator>();
+            builder.RegisterType<BroadcastDto>().AsSelf();
+            builder.RegisterType<BroadcastDtoFactory>().AsSelf();
             _container = builder.Build();
         }
         protected override IEnumerable<object> GetAllInstances(Type service)

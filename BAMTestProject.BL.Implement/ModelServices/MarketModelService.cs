@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity.Migrations;
+using System.Linq;
 using BAMTestProject.BL.Abstract.CrudService;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Models;
@@ -17,11 +18,6 @@ namespace BAMTestProject.BL.Implement.ModelServices
         public void Delete(int id)
         {
             var market = _dbContext.Markets.FirstOrDefault(x => x.Id == id);
-            var broadcasts = _dbContext.Broadcasts.Where(x => x.MarketId == id);
-            foreach (var element in broadcasts)
-            {
-                _dbContext.Broadcasts.Remove(element);
-            }
             if (market != null) _dbContext.Markets.Remove(market);
             _dbContext.SaveChanges();
         }
@@ -29,8 +25,7 @@ namespace BAMTestProject.BL.Implement.ModelServices
         public Market Edit(int id, Market entity)
         {
             var market = _dbContext.Markets.FirstOrDefault(x => x.Id == id);
-            _dbContext.Markets.Attach(market);
-            market.Name = entity.Name;
+            _dbContext.Markets.AddOrUpdate(entity);
             _dbContext.SaveChanges();
             return market;
         }

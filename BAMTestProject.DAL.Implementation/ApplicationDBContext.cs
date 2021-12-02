@@ -13,9 +13,10 @@ namespace BAMTestProject.DAL.Implementation
         {
             
         }
+        //TODO: Add entity configurations
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            
+
         }
     }
 }

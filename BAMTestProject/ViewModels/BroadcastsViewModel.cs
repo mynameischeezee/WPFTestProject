@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using BAMTestProject.BL.Abstract.Services;
 using BAMTestProject.BL.Implement.ModelServices;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Models;
@@ -21,20 +23,23 @@ namespace BAMTestProject.ViewModels
         private DateTime _addStartDate;
         private DateTime _addEndDate;
         private string _addBroadcastViewsCount;
+        private string _endDates;
+        private IBroadcastEndDateCalculator _calculationService;
 
         public ObservableCollection<DayOfWeekViewModel> DaysOfWeek { get; set; }
-
-        public BroadcastsViewModel(ApplicationDbContext dbContext, BroadcastModelService broadcastsModelService)
+        //TODO: Create broadcastVM (another one)
+        public BroadcastsViewModel(ApplicationDbContext dbContext, BroadcastModelService broadcastsModelService, IBroadcastEndDateCalculator calculationService)
         {
             _dbContext = dbContext;
             _broadcastsModelService = broadcastsModelService;
-            AddShowsList = new ObservableCollection<string>(dbContext.Shows.Select(x => x.Name));
-            AddMarketsList = new ObservableCollection<string>(dbContext.Markets.Select(x => x.Name));
+            _calculationService = calculationService;
+            AddShowsList = new ObservableCollection<string>(_dbContext.Shows.Select(x => x.Name));
+            AddMarketsList = new ObservableCollection<string>(_dbContext.Markets.Select(x => x.Name));
             AddStartDate = DateTime.Today;
             AddEndDate = DateTime.Today;
-            var days = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().Select(x => new DayOfWeekViewModel() { DayOfWeek = x });
-            DaysOfWeek = new ObservableCollection<DayOfWeekViewModel>(days);
+            DaysOfWeek = new ObservableCollection<DayOfWeekViewModel>(CreateDayOfWeekViewModels());
         }
+
         public Broadcast SelectedBroadcast
         {
             get => _selectedBroadcast;
@@ -45,7 +50,7 @@ namespace BAMTestProject.ViewModels
         {
             get
             {
-                _broadcastsList = new ObservableCollection<Broadcast>(_dbContext.Broadcasts);
+                _broadcastsList = new ObservableCollection<Broadcast>();
                 return _broadcastsList;
             }
             set => Set(ref _broadcastsList, value, nameof(BroadcastsList));
@@ -76,7 +81,7 @@ namespace BAMTestProject.ViewModels
                 {
                     _addSelectedShow = new Show();
                 }
-                
+
                 NotifyOfPropertyChange(() => AddSelectedShow);
                 NotifyOfPropertyChange(() => CanAddBroadcast);
             }
@@ -90,12 +95,12 @@ namespace BAMTestProject.ViewModels
                 try
                 {
                     _addSelectedMarket = _dbContext.Markets.First(x => x.Name == value);
-
                 }
                 catch
                 {
                     _addSelectedMarket = new Market();
                 }
+
                 NotifyOfPropertyChange(() => AddSelectedMarket);
                 NotifyOfPropertyChange(() => CanAddBroadcast);
             }
@@ -125,7 +130,7 @@ namespace BAMTestProject.ViewModels
 
         public void AddBroadcast()
         {
-            Broadcast broadcastToAdd = new Broadcast()
+            var broadcastToAdd = new Broadcast()
             {
                 MarketId = _addSelectedMarket.Id,
                 ShowId = _addSelectedShow.Id,
@@ -139,22 +144,32 @@ namespace BAMTestProject.ViewModels
         }
 
         public bool CanAddBroadcast =>
-            AddSelectedShow != null && AddMarketsList != null &&
-            !string.IsNullOrWhiteSpace(AddBroadcastViewsCount) &&
+            AddSelectedShow != null && AddMarketsList != null && !string.IsNullOrWhiteSpace(AddBroadcastViewsCount) &&
             int.TryParse(AddBroadcastViewsCount, out _);
 
         public void DeleteBroadcast()
         {
-
             _broadcastsModelService.Delete(SelectedBroadcast.Id);
             NotifyOfPropertyChange(() => BroadcastsList);
         }
 
         public void Update()
         {
-            NotifyOfPropertyChange(()=> BroadcastsList);
+            NotifyOfPropertyChange(() => BroadcastsList);
             AddShowsList = new ObservableCollection<string>(_dbContext.Shows.Select(x => x.Name));
             AddMarketsList = new ObservableCollection<string>(_dbContext.Markets.Select(x => x.Name));
+        }
+
+        public IEnumerable<DayOfWeekViewModel> CreateDayOfWeekViewModels()
+        {
+            var days = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().Select(DayOfWeekViewModel.Create);
+            return days;
+        }
+
+        public string EndDates
+        {
+            get => _endDates;
+            set => Set(ref _endDates, value, nameof(EndDates));
         }
     }
 }

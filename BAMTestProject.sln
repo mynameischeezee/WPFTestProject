@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAMTestProject.DAL.Implemen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAMTestProject.DAL.Abstract", "BAMTestProject.DAL.Abstract\BAMTestProject.DAL.Abstract.csproj", "{C321E1F5-B535-4D80-B10F-7187DE64E57C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAMTestProject.BL.Implement", "BAMTestProject.BL.Implement\BAMTestProject.BL.Implement.csproj", "{1F26CF96-CE6D-4AD5-9E3F-DC69CC46918E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAMTestProject.BL.Implementation", "BAMTestProject.BL.Implement\BAMTestProject.BL.Implementation.csproj", "{1F26CF96-CE6D-4AD5-9E3F-DC69CC46918E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAMTestProject.BL.Abstract", "BAMTestProject.BL.Abstract\BAMTestProject.BL.Abstract.csproj", "{854E4A5B-1766-48E0-AC5F-A80BBAACD8CB}"
 EndProject
