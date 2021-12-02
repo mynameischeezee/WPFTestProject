@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using BAMTestProject.BL.Implement.ModelServices;
+using BAMTestProject.BL.Implement.Repositories;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 using Caliburn.Micro;
@@ -9,7 +9,6 @@ namespace BAMTestProject.ViewModels
     public class ShowsViewModel : Screen
     {
         private readonly ApplicationDbContext _dbContext;
-        private readonly ShowModelService _showModelService;
         private ObservableCollection<Show> _showsList;
         private Show _selectedShow;
         private int _showIdDetail;
@@ -18,10 +17,9 @@ namespace BAMTestProject.ViewModels
 
         public bool CanEditShow => !string.IsNullOrWhiteSpace(_showNameDetail);
         //TODO: Create showVM (another one)
-        public ShowsViewModel(ApplicationDbContext dbContext, ShowModelService showModelService)
+        public ShowsViewModel(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
-            _showModelService = showModelService;
         }
 
         public ObservableCollection<Show> ShowsList
@@ -77,7 +75,7 @@ namespace BAMTestProject.ViewModels
         public void EditShow()
         {
             Show showToEdit = new Show() {Name = _showNameDetail};
-            _showModelService.Edit(_selectedShow.Id, showToEdit);
+            //TODO: put it back _showModelService.Edit(_selectedShow.Id, showToEdit);
             NotifyOfPropertyChange(() => ShowsList);
         }
 
@@ -86,7 +84,7 @@ namespace BAMTestProject.ViewModels
         public void AddShow()
         {
             Show showToAdd = new Show() {Name = _addShowName};
-            _showModelService.Insert(showToAdd);
+            //TODO: put it back _showModelService.Insert(showToAdd);
             AddShowName = "";
             NotifyOfPropertyChange(() => ShowsList);
         }
@@ -94,7 +92,7 @@ namespace BAMTestProject.ViewModels
         public void DeleteShow()
         {
 
-            _showModelService.Delete(SelectedShow.Id);
+            //TODO: put it back _showModelService.Delete(SelectedShow.Id);
             NotifyOfPropertyChange(() => ShowsList);
         }
     }

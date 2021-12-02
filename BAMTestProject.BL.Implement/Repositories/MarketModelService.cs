@@ -1,12 +1,11 @@
 ﻿using System.Data.Entity.Migrations;
 using System.Linq;
-using BAMTestProject.BL.Abstract.CrudService;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 
-namespace BAMTestProject.BL.Implement.ModelServices
+namespace BAMTestProject.BL.Implement.Repositories
 {
-    public class MarketModelService : ICrudService<Market>
+    public class MarketModelService
     {
         private readonly ApplicationDbContext _dbContext;
 

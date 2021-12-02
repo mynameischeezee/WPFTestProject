@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using BAMTestProject.BL.Abstract.Services;
-using BAMTestProject.BL.Implement.ModelServices;
+using BAMTestProject.BL.Implementation.BaseServices;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 using Caliburn.Micro;
@@ -13,7 +12,7 @@ namespace BAMTestProject.ViewModels
     public class BroadcastsViewModel : Screen
     {
         private readonly ApplicationDbContext _dbContext;
-        private readonly BroadcastModelService _broadcastsModelService;
+        //private readonly BroadcastModelService _broadcastsModelService;
         private ObservableCollection<Broadcast> _broadcastsList;
         private Broadcast _selectedBroadcast;
         private ObservableCollection<string> _addShowsList;
@@ -28,10 +27,9 @@ namespace BAMTestProject.ViewModels
 
         public ObservableCollection<DayOfWeekViewModel> DaysOfWeek { get; set; }
         //TODO: Create broadcastVM (another one)
-        public BroadcastsViewModel(ApplicationDbContext dbContext, BroadcastModelService broadcastsModelService, IBroadcastEndDateCalculator calculationService)
+        public BroadcastsViewModel(ApplicationDbContext dbContext, IBroadcastEndDateCalculator calculationService)
         {
             _dbContext = dbContext;
-            _broadcastsModelService = broadcastsModelService;
             _calculationService = calculationService;
             AddShowsList = new ObservableCollection<string>(_dbContext.Shows.Select(x => x.Name));
             AddMarketsList = new ObservableCollection<string>(_dbContext.Markets.Select(x => x.Name));
@@ -139,7 +137,7 @@ namespace BAMTestProject.ViewModels
                 StartDate = AddStartDate,
                 Days = DaysOfWeek.Where(x => x.IsSelected).Select(x => x.DayOfWeek).ToList()
             };
-            _broadcastsModelService.Insert(broadcastToAdd);
+            //TODO: change _broadcastsModelService.Insert(broadcastToAdd);
             NotifyOfPropertyChange(() => BroadcastsList);
         }
 
@@ -149,8 +147,13 @@ namespace BAMTestProject.ViewModels
 
         public void DeleteBroadcast()
         {
-            _broadcastsModelService.Delete(SelectedBroadcast.Id);
+            //TODO: put it back _broadcastsModelService.Delete(SelectedBroadcast.Id);
             NotifyOfPropertyChange(() => BroadcastsList);
+        }
+        
+        //TODO: rework Broadcast edit system
+        public void Edit()
+        {
         }
 
         public void Update()

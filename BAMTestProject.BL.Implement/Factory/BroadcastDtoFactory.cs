@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using BAMTestProject.BL.Abstract.Services;
-using BAMTestProject.BL.Implement.DTO;
+using BAMTestProject.BL.Implementation.BaseServices;
+using BAMTestProject.BL.Implementation.DTO;
 
-namespace BAMTestProject.BL.Implement.Factory
+namespace BAMTestProject.BL.Implementation.Factory
 {
     public class BroadcastDtoFactory
     {

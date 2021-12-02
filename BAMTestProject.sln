@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAMTestProject.DAL.Implemen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAMTestProject.BL.Implementation", "BAMTestProject.BL.Implement\BAMTestProject.BL.Implementation.csproj", "{1F26CF96-CE6D-4AD5-9E3F-DC69CC46918E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAMTestProject.BL.Abstract", "BAMTestProject.BL.Abstract\BAMTestProject.BL.Abstract.csproj", "{854E4A5B-1766-48E0-AC5F-A80BBAACD8CB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,14 +41,6 @@ Global
 		{1F26CF96-CE6D-4AD5-9E3F-DC69CC46918E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F26CF96-CE6D-4AD5-9E3F-DC69CC46918E}.Release|x64.ActiveCfg = Release|x64
 		{1F26CF96-CE6D-4AD5-9E3F-DC69CC46918E}.Release|x64.Build.0 = Release|x64
-		{854E4A5B-1766-48E0-AC5F-A80BBAACD8CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{854E4A5B-1766-48E0-AC5F-A80BBAACD8CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{854E4A5B-1766-48E0-AC5F-A80BBAACD8CB}.Debug|x64.ActiveCfg = Debug|x64
-		{854E4A5B-1766-48E0-AC5F-A80BBAACD8CB}.Debug|x64.Build.0 = Debug|x64
-		{854E4A5B-1766-48E0-AC5F-A80BBAACD8CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{854E4A5B-1766-48E0-AC5F-A80BBAACD8CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{854E4A5B-1766-48E0-AC5F-A80BBAACD8CB}.Release|x64.ActiveCfg = Release|x64
-		{854E4A5B-1766-48E0-AC5F-A80BBAACD8CB}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -183,10 +183,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BAMTestProject.BL.Abstract\BAMTestProject.BL.Abstract.csproj">
-      <Project>{854e4a5b-1766-48e0-ac5f-a80bbaacd8cb}</Project>
-      <Name>BAMTestProject.BL.Abstract</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BAMTestProject.BL.Implement\BAMTestProject.BL.Implementation.csproj">
       <Project>{1f26cf96-ce6d-4ad5-9e3f-dc69cc46918e}</Project>
       <Name>BAMTestProject.BL.Implementation</Name>
@@ -198,10 +194,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Styles\Buttons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\CheckBoxes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

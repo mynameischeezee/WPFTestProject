@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using BAMTestProject.BL.Implement.ModelServices;
+using BAMTestProject.BL.Implement.Repositories;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 using Caliburn.Micro;
@@ -9,7 +9,6 @@ namespace BAMTestProject.ViewModels
     public class MarketsViewModel : Screen
     {
         private readonly ApplicationDbContext _dbContext;
-        private readonly MarketModelService _marketModelService;
         private Market _selectedMarket;
         private int _marketIdDetail;
         private string _marketNameDetail;
@@ -17,10 +16,9 @@ namespace BAMTestProject.ViewModels
 
         public bool CanAddMarket => !string.IsNullOrWhiteSpace(_addMarketName);
         //TODO: Create marketVM (another one)
-        public MarketsViewModel(ApplicationDbContext dbContext, MarketModelService marketModelService)
+        public MarketsViewModel(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
-            _marketModelService = marketModelService;
         }
 
         private ObservableCollection<Market> _marketsList;
@@ -80,21 +78,21 @@ namespace BAMTestProject.ViewModels
         public void EditMarket()
         {
             var marketToEdit = new Market() {Name = _marketNameDetail};
-            _marketModelService.Edit(_selectedMarket.Id, marketToEdit);
+            //TODO: put it back _marketModelService.Edit(_selectedMarket.Id, marketToEdit);
             NotifyOfPropertyChange(() => MarketsList);
         }
 
         public void AddMarket()
         {
             var marketToAdd = new Market() {Name = _addMarketName};
-            _marketModelService.Insert(marketToAdd);
+            //TODO: put it back _marketModelService.Insert(marketToAdd);
             AddMarketName = "";
             NotifyOfPropertyChange(() => MarketsList);
         }
 
         public void DeleteMarket()
         {
-            _marketModelService.Delete(SelectedMarket.Id);
+            //TODO: put it back _marketModelService.Delete(SelectedMarket.Id);
             NotifyOfPropertyChange(() => MarketsList);
         }
     }

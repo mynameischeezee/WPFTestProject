@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BAMTestProject.BL.Implement.DTO
+namespace BAMTestProject.BL.Implementation.DTO
 {
     public class BroadcastDto
     {

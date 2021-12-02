@@ -1,11 +1,10 @@
 ﻿using System.Linq;
-using BAMTestProject.BL.Abstract.CrudService;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 
-namespace BAMTestProject.BL.Implement.ModelServices
+namespace BAMTestProject.BL.Implement.Repositories
 {
-    public class ShowModelService : ICrudService<Show>
+    public class ShowModelService
     {
         private readonly ApplicationDbContext _dbContext;
 

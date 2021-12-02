@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using BAMTestProject.BL.Abstract.Services;
+using BAMTestProject.BL.Implementation.BaseServices;
 
-namespace BAMTestProject.BL.Implement.Services
+namespace BAMTestProject.BL.Implementation.Services
 {
     public class BroadcastEndDateCalculator : IBroadcastEndDateCalculator
     {
