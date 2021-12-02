@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAMTestProject", "BAMTestProject\BAMTestProject.csproj", "{4273C4F5-0B12-479A-BAFA-64284C4AC054}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAMTestProject.View", "BAMTestProject\BAMTestProject.View.csproj", "{4273C4F5-0B12-479A-BAFA-64284C4AC054}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAMTestProject.DAL.Implementation", "BAMTestProject.DAL.Implementation\BAMTestProject.DAL.Implementation.csproj", "{64A96D8D-03DF-45A1-AFE9-34E03802EFFB}"
 EndProject

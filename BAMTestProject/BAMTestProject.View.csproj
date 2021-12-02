@@ -8,7 +8,7 @@
     <ProjectGuid>{4273C4F5-0B12-479A-BAFA-64284C4AC054}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>BAMTestProject</RootNamespace>
-    <AssemblyName>BAMTestProject</AssemblyName>
+    <AssemblyName>BAMTestProject.View</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
