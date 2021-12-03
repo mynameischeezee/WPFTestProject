@@ -139,7 +139,7 @@ namespace BAMTestProject.ViewModels
                 Days = DaysOfWeek.Where(x => x.IsSelected).Select(x => x.DayOfWeek).ToList()
             };
             _broadcastRepository.Insert(broadcastToAdd);
-            NotifyOfPropertyChange(() => BroadcastsList);
+            Update();
         }
 
         public bool CanAddBroadcast =>
@@ -152,9 +152,12 @@ namespace BAMTestProject.ViewModels
             Update();
         }
 
-        //TODO: rework Broadcast edit system
-        public void Edit()
+        //TODO: fix start date edit bug
+        public void EditBroadcast()
         {
+            SelectedBroadcast.Days = DaysOfWeek.Where(x => x.IsSelected).Select(x => x.DayOfWeek).ToList();
+            _broadcastRepository.Edit(_selectedBroadcast.Id, SelectedBroadcast);
+            Update();
         }
 
         public void Update()

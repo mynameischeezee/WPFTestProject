@@ -32,15 +32,35 @@
                 <StackPanel Orientation="Vertical" Width="300px">
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Id:" Style="{StaticResource DetailHeader}" />
-                        <Label x:Name="MarketIdDetail" Style="{StaticResource DetailHeader}" />
+                        <Label x:Name="BroadcastIdDetail" Style="{StaticResource DetailHeader}" Content="{Binding SelectedBroadcast.Id}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Name:" Style="{StaticResource DetailHeader}" />
-                        <TextBox x:Name="MarketNameDetail" Style="{StaticResource AddTextBoxStyle}"
+                        <Label Content="Show:" Style="{StaticResource DetailHeader}" />
+                        <ComboBox ItemsSource="{Binding AddShowsList}" x:Name="BroadcastShowDetail"  SelectedItem="{Binding SelectedBroadcast.Show.Name}"
                                  VerticalAlignment="Center" Width="180px" />
-                        <Button x:Name="EditMarket" Width="30px" Height="30px" Content="Save"
-                                HorizontalAlignment="Left" Style="{StaticResource AddButtonStyle}" Margin="10,0,0,0" />
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Market:" Style="{StaticResource DetailHeader}" />
+                        <ComboBox ItemsSource="{Binding AddMarketsList}" x:Name="BroadcastMarketDetail"  SelectedItem="{Binding SelectedBroadcast.Market.Name}"
+                                  VerticalAlignment="Center" Width="180px" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Start date:" Style="{StaticResource DetailHeader}" />
+                        <DatePicker x:Name="BroadcastStartDateDetail" Height="25px" Margin="10,0,0,0" SelectedDate="{Binding SelectedBroadcast.StartDate}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Shows count:" Style="{StaticResource DetailHeader}" />
+                        <TextBox x:Name="BroadcastShowsCountDetail" Text="{Binding SelectedBroadcast.ShowsAmount}" Margin="0" Style="{StaticResource AddTextBoxStyle}" Width="50px"/>
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding DaysOfWeek}" Margin="10,0,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding DayOfWeek}" IsChecked="{Binding IsSelected}"></CheckBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button x:Name="EditBroadcast" Width="30px" Height="30px" Content="Save"
+                            HorizontalAlignment="Left" Style="{StaticResource AddButtonStyle}" Margin="10,0,0,0" />
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -49,7 +69,6 @@
                 <ComboBox x:Name="AddShowsList" Height="20px" SelectedItem="{Binding AddSelectedShow}" Width="100" />
                 <ComboBox x:Name="AddMarketsList" Height="20px" SelectedItem="{Binding AddSelectedMarket}" Width="100" />
                 <DatePicker x:Name="AddStartDate" Height="20px" Margin="10,0,0,0" />
-                <DatePicker x:Name="AddEndDate" Height="20px" />
                 <ItemsControl ItemsSource="{Binding DaysOfWeek}" Margin="10,0,0,0">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
