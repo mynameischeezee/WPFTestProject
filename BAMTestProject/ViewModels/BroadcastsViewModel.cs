@@ -11,7 +11,8 @@ namespace BAMTestProject.ViewModels
 {
     public class BroadcastsViewModel : Screen
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly IBaseRepository<ShowEntity> _showRepository;
+        private readonly IBaseRepository<MarketEntity> _marketRepository;
         private readonly IBaseRepository<BroadcastEntity> _broadcastRepository;
         private ObservableCollection<BroadcastEntity> _broadcastsList;
         private BroadcastEntity _selectedBroadcast;
@@ -25,17 +26,19 @@ namespace BAMTestProject.ViewModels
         private string _endDates;
 
         public ObservableCollection<DayOfWeekViewModel> DaysOfWeek { get; set; }
+
         //TODO: Create broadcastVM (another one)
-        public BroadcastsViewModel(ApplicationDbContext dbContext, IBaseRepository<BroadcastEntity> broadcastRepository)
+        public BroadcastsViewModel(IBaseRepository<MarketEntity> marketRepository, IBaseRepository<BroadcastEntity> broadcastRepository, IBaseRepository<ShowEntity> showRepository)
         {
-            _dbContext = dbContext;
+            _marketRepository = marketRepository;
             _broadcastRepository = broadcastRepository;
-            AddShowsList = new ObservableCollection<string>(_dbContext.Shows.Select(x => x.Name));
-            AddMarketsList = new ObservableCollection<string>(_dbContext.Markets.Select(x => x.Name));
+            _showRepository = showRepository;
             AddStartDate = DateTime.Today;
             AddEndDate = DateTime.Today;
             DaysOfWeek = new ObservableCollection<DayOfWeekViewModel>(CreateDayOfWeekViewModels());
+            Update();
         }
+
         public BroadcastEntity SelectedBroadcast
         {
             get => _selectedBroadcast;
@@ -71,7 +74,7 @@ namespace BAMTestProject.ViewModels
             {
                 try
                 {
-                    _addSelectedShow = _dbContext.Shows.First(x => x.Name == value);
+                    _addSelectedShow = _showRepository.GetAll().First(x => x.Name == value);
                 }
                 catch
                 {
@@ -90,7 +93,7 @@ namespace BAMTestProject.ViewModels
             {
                 try
                 {
-                    _addSelectedMarket = _dbContext.Markets.First(x => x.Name == value);
+                    _addSelectedMarket = _marketRepository.GetAll().First(x => x.Name == value);
                 }
                 catch
                 {
@@ -126,7 +129,7 @@ namespace BAMTestProject.ViewModels
 
         public void AddBroadcast()
         {
-            var broadcastToAdd = new BroadcastEntity()
+            var broadcastToAdd = new BroadcastEntity
             {
                 MarketId = _addSelectedMarket.Id,
                 ShowId = _addSelectedShow.Id,
@@ -146,9 +149,9 @@ namespace BAMTestProject.ViewModels
         public void DeleteBroadcast()
         {
             _broadcastRepository.Delete(SelectedBroadcast.Id);
-            NotifyOfPropertyChange(() => BroadcastsList);
+            Update();
         }
-        
+
         //TODO: rework Broadcast edit system
         public void Edit()
         {
@@ -157,8 +160,8 @@ namespace BAMTestProject.ViewModels
         public void Update()
         {
             NotifyOfPropertyChange(() => BroadcastsList);
-            AddShowsList = new ObservableCollection<string>(_dbContext.Shows.Select(x => x.Name));
-            AddMarketsList = new ObservableCollection<string>(_dbContext.Markets.Select(x => x.Name));
+            AddShowsList = new ObservableCollection<string>(_showRepository.GetAll().Select(x => x.Name));
+            AddMarketsList = new ObservableCollection<string>(_marketRepository.GetAll().Select(x => x.Name));
         }
 
         public IEnumerable<DayOfWeekViewModel> CreateDayOfWeekViewModels()

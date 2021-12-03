@@ -2,8 +2,7 @@
 
 namespace BAMTestProject.BL.Implementation.BaseRepositories
 {
-    public interface IBaseRepository<T> 
-        where T : class
+    public interface IBaseRepository<T> where T : class
     {
         void Delete(int id);
         void Edit(int id, T entity);

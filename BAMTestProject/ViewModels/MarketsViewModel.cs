@@ -14,6 +14,7 @@ namespace BAMTestProject.ViewModels
         private string _addMarketName;
 
         public bool CanAddMarket => !string.IsNullOrWhiteSpace(_addMarketName);
+
         //TODO: Create marketVM (another one)
         public MarketsViewModel(IBaseRepository<MarketEntity> marketRepository)
         {
@@ -78,20 +79,30 @@ namespace BAMTestProject.ViewModels
         {
             SelectedMarket.Name = MarketNameDetail;
             _marketRepository.Edit(_selectedMarket.Id, SelectedMarket);
-            NotifyOfPropertyChange(() => MarketsList);
+            Update();
         }
 
         public void AddMarket()
         {
-            var marketToAdd = new MarketEntity() {Name = _addMarketName};
+            var marketToAdd = new MarketEntity {Name = _addMarketName};
             _marketRepository.Insert(marketToAdd);
-            AddMarketName = "";
-            NotifyOfPropertyChange(() => MarketsList);
+            CleanUp();
         }
 
         public void DeleteMarket()
         {
             _marketRepository.Delete(SelectedMarket.Id);
+            Update();
+        }
+
+        public void CleanUp()
+        {
+            AddMarketName = "";
+            Update();
+        }
+
+        public void Update()
+        {
             NotifyOfPropertyChange(() => MarketsList);
         }
     }

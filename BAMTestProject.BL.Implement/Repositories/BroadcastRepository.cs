@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
@@ -9,7 +10,7 @@ using BAMTestProject.DAL.Implementation.Entities;
 namespace BAMTestProject.BL.Implementation.Repositories
 {
     public class BroadcastRepository : IBaseRepository<BroadcastEntity>
-    { 
+    {
         private readonly ApplicationDbContext _dbContext;
 
         public BroadcastRepository(ApplicationDbContext dbContext)
@@ -23,6 +24,7 @@ namespace BAMTestProject.BL.Implementation.Repositories
             if (broadcast != null) _dbContext.Broadcasts.Remove(broadcast);
             _dbContext.SaveChanges();
         }
+
         public void Edit(int id, BroadcastEntity entity)
         {
             _dbContext.Broadcasts.AddOrUpdate(entity);
@@ -49,7 +51,7 @@ namespace BAMTestProject.BL.Implementation.Repositories
 
         public BroadcastEntity Search(int id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

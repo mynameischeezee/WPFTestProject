@@ -15,6 +15,7 @@ namespace BAMTestProject.ViewModels
         private string _addShowName;
 
         public bool CanEditShow => !string.IsNullOrWhiteSpace(_showNameDetail);
+
         //TODO: Create showVM (another one)
         public ShowsViewModel(IBaseRepository<ShowEntity> showRepository)
         {
@@ -75,23 +76,32 @@ namespace BAMTestProject.ViewModels
         {
             SelectedShow.Name = ShowNameDetail;
             _showRepository.Edit(_selectedShow.Id, SelectedShow);
-            NotifyOfPropertyChange(() => ShowsList);
+            Update();
         }
 
         public bool CanAddShow => !string.IsNullOrWhiteSpace(_addShowName);
 
         public void AddShow()
         {
-            ShowEntity showToAdd = new ShowEntity() {Name = _addShowName};
+            var showToAdd = new ShowEntity {Name = _addShowName};
             _showRepository.Insert(showToAdd);
-            AddShowName = "";
-            NotifyOfPropertyChange(() => ShowsList);
+            CleanUp();
         }
 
         public void DeleteShow()
         {
-
             _showRepository.Delete(SelectedShow.Id);
+            Update();
+        }
+
+        public void CleanUp()
+        {
+            AddShowName = "";
+            Update();
+        }
+
+        public void Update()
+        {
             NotifyOfPropertyChange(() => ShowsList);
         }
     }
