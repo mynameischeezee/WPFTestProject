@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using BAMTestProject.BL.Implement.Repositories;
+using BAMTestProject.BL.Implementation.BaseRepositories;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 using Caliburn.Micro;
@@ -7,7 +9,7 @@ namespace BAMTestProject.ViewModels
 {
     public class ShowsViewModel : Screen
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly IBaseRepository<ShowEntity> _showRepository;
         private ObservableCollection<ShowEntity> _showsList;
         private ShowEntity _selectedShow;
         private int _showIdDetail;
@@ -16,16 +18,16 @@ namespace BAMTestProject.ViewModels
 
         public bool CanEditShow => !string.IsNullOrWhiteSpace(_showNameDetail);
         //TODO: Create showVM (another one)
-        public ShowsViewModel(ApplicationDbContext dbContext)
+        public ShowsViewModel(IBaseRepository<ShowEntity> showRepository)
         {
-            _dbContext = dbContext;
+            _showRepository = showRepository;
         }
 
         public ObservableCollection<ShowEntity> ShowsList
         {
             get
             {
-                _showsList = new ObservableCollection<ShowEntity>(_dbContext.Shows);
+                _showsList = _showRepository.GetAll();
                 return _showsList;
             }
             set => Set(ref _showsList, value, nameof(ShowsList));
@@ -73,8 +75,8 @@ namespace BAMTestProject.ViewModels
 
         public void EditShow()
         {
-            ShowEntity showToEdit = new ShowEntity() {Name = _showNameDetail};
-            //TODO: put it back _showModelService.Edit(_selectedShow.Id, showToEdit);
+            SelectedShow.Name = ShowNameDetail;
+            _showRepository.Edit(_selectedShow.Id, SelectedShow);
             NotifyOfPropertyChange(() => ShowsList);
         }
 
@@ -83,7 +85,7 @@ namespace BAMTestProject.ViewModels
         public void AddShow()
         {
             ShowEntity showToAdd = new ShowEntity() {Name = _addShowName};
-            //TODO: put it back _showModelService.Insert(showToAdd);
+            _showRepository.Insert(showToAdd);
             AddShowName = "";
             NotifyOfPropertyChange(() => ShowsList);
         }
@@ -91,7 +93,7 @@ namespace BAMTestProject.ViewModels
         public void DeleteShow()
         {
 
-            //TODO: put it back _showModelService.Delete(SelectedShow.Id);
+            _showRepository.Delete(SelectedShow.Id);
             NotifyOfPropertyChange(() => ShowsList);
         }
     }

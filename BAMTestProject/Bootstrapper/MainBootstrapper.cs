@@ -42,6 +42,9 @@ namespace BAMTestProject.Bootstrapper
             builder.RegisterType<ShowsViewModel>().AsSelf();
             builder.RegisterType<MarketsViewModel>().AsSelf();
             builder.RegisterType<BroadcastsViewModel>().AsSelf();
+            builder.RegisterType<ShowViewModel>().AsSelf();
+            builder.RegisterType<MarketViewModel>().AsSelf();
+            builder.RegisterType<BroadcastViewModel>().AsSelf();
             builder.RegisterType<ShowRepository>().As<IBaseRepository<ShowEntity>>();
             builder.RegisterType<MarketRepository>().As<IBaseRepository<MarketEntity>>();
             builder.RegisterType<BroadcastRepository>().As<IBaseRepository<BroadcastEntity>>();

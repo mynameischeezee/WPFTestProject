@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.ObjectModel;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using BAMTestProject.BL.Implementation.BaseRepositories;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
@@ -21,13 +24,15 @@ namespace BAMTestProject.BL.Implement.Repositories
             _dbContext.SaveChanges();
         }
 
-        public ShowEntity Edit(int id, ShowEntity entity)
+        public void Edit(int id, ShowEntity entity)
         {
-            var show = _dbContext.Shows.FirstOrDefault(x => x.Id == id);
-            _dbContext.Shows.Attach(show);
-            show.Name = entity.Name;
+            _dbContext.Shows.AddOrUpdate(entity);
             _dbContext.SaveChanges();
-            return show;
+        }
+
+        public ObservableCollection<ShowEntity> GetAll()
+        {
+            return new ObservableCollection<ShowEntity>(_dbContext.Shows);
         }
 
         public void Insert(ShowEntity entity)

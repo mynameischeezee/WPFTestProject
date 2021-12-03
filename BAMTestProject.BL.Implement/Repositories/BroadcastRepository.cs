@@ -1,4 +1,6 @@
-﻿using System.Data.Entity.Migrations;
+﻿using System.Collections.ObjectModel;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using BAMTestProject.BL.Implementation.BaseRepositories;
 using BAMTestProject.DAL.Implementation;
@@ -21,13 +23,17 @@ namespace BAMTestProject.BL.Implement.Repositories
             if (broadcast != null) _dbContext.Broadcasts.Remove(broadcast);
             _dbContext.SaveChanges();
         }
-        //TODO: Rework edit system
-        public BroadcastEntity Edit(int id, BroadcastEntity entity)
+        public void Edit(int id, BroadcastEntity entity)
         {
-            var broadcast = _dbContext.Broadcasts.FirstOrDefault(x => x.Id == id);
             _dbContext.Broadcasts.AddOrUpdate(entity);
             _dbContext.SaveChanges();
-                return broadcast;
+        }
+
+        public ObservableCollection<BroadcastEntity> GetAll()
+        {
+            return new ObservableCollection<BroadcastEntity>(_dbContext.Broadcasts
+                .Include(s => s.Show)
+                .Include(m => m.Market));
         }
 
         public void Insert(BroadcastEntity entity)

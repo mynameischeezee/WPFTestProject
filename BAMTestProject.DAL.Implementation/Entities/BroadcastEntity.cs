@@ -9,7 +9,8 @@ namespace BAMTestProject.DAL.Implementation.Entities
     public class BroadcastEntity : BaseEntity
     {
         public int ShowId { get; set; }
-        [ForeignKey(nameof(ShowId))] public ShowEntity Show { get; set; }
+        [ForeignKey(nameof(ShowId))]
+        public ShowEntity Show { get; set; }
         public DateTime StartDate { get; set; }
         public string BroadcastDays { get; set; }
 

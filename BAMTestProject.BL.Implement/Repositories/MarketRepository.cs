@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.Migrations;
+﻿using System.Collections.ObjectModel;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using BAMTestProject.BL.Implementation.BaseRepositories;
 using BAMTestProject.DAL.Implementation;
@@ -22,12 +23,15 @@ namespace BAMTestProject.BL.Implement.Repositories
             _dbContext.SaveChanges();
         }
 
-        public MarketEntity Edit(int id, MarketEntity entity)
+        public void Edit(int id, MarketEntity entity)
         {
-            var market = _dbContext.Markets.FirstOrDefault(x => x.Id == id);
             _dbContext.Markets.AddOrUpdate(entity);
             _dbContext.SaveChanges();
-            return market;
+        }
+
+        public ObservableCollection<MarketEntity> GetAll()
+        {
+            return new ObservableCollection<MarketEntity>(_dbContext.Markets);
         }
 
         public void Insert(MarketEntity entity)

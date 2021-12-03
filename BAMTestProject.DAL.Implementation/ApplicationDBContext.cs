@@ -11,11 +11,6 @@ namespace BAMTestProject.DAL.Implementation
 
         public ApplicationDbContext() : base("BAMDatabaseConnectionString")
         {
-            
-        }
-        //TODO: Add entity configurations
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
 
         }
     }

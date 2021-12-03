@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
+using BAMTestProject.BL.Implement.Repositories;
+using BAMTestProject.BL.Implementation.BaseRepositories;
 using BAMTestProject.BL.Implementation.BaseServices;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
@@ -12,7 +15,7 @@ namespace BAMTestProject.ViewModels
     public class BroadcastsViewModel : Screen
     {
         private readonly ApplicationDbContext _dbContext;
-        //private readonly BroadcastRepository _broadcastsModelService;
+        private readonly IBaseRepository<BroadcastEntity> _broadcastRepository;
         private ObservableCollection<BroadcastEntity> _broadcastsList;
         private BroadcastEntity _selectedBroadcast;
         private ObservableCollection<string> _addShowsList;
@@ -23,21 +26,19 @@ namespace BAMTestProject.ViewModels
         private DateTime _addEndDate;
         private string _addBroadcastViewsCount;
         private string _endDates;
-        private IBroadcastEndDateCalculator _calculationService;
 
         public ObservableCollection<DayOfWeekViewModel> DaysOfWeek { get; set; }
         //TODO: Create broadcastVM (another one)
-        public BroadcastsViewModel(ApplicationDbContext dbContext, IBroadcastEndDateCalculator calculationService)
+        public BroadcastsViewModel(ApplicationDbContext dbContext, IBaseRepository<BroadcastEntity> broadcastRepository)
         {
             _dbContext = dbContext;
-            _calculationService = calculationService;
+            _broadcastRepository = broadcastRepository;
             AddShowsList = new ObservableCollection<string>(_dbContext.Shows.Select(x => x.Name));
             AddMarketsList = new ObservableCollection<string>(_dbContext.Markets.Select(x => x.Name));
             AddStartDate = DateTime.Today;
             AddEndDate = DateTime.Today;
             DaysOfWeek = new ObservableCollection<DayOfWeekViewModel>(CreateDayOfWeekViewModels());
         }
-
         public BroadcastEntity SelectedBroadcast
         {
             get => _selectedBroadcast;
@@ -48,7 +49,7 @@ namespace BAMTestProject.ViewModels
         {
             get
             {
-                _broadcastsList = new ObservableCollection<BroadcastEntity>();
+                _broadcastsList = _broadcastRepository.GetAll();
                 return _broadcastsList;
             }
             set => Set(ref _broadcastsList, value, nameof(BroadcastsList));
@@ -137,7 +138,7 @@ namespace BAMTestProject.ViewModels
                 StartDate = AddStartDate,
                 Days = DaysOfWeek.Where(x => x.IsSelected).Select(x => x.DayOfWeek).ToList()
             };
-            //TODO: change _broadcastsModelService.Insert(broadcastToAdd);
+            _broadcastRepository.Insert(broadcastToAdd);
             NotifyOfPropertyChange(() => BroadcastsList);
         }
 
@@ -147,7 +148,7 @@ namespace BAMTestProject.ViewModels
 
         public void DeleteBroadcast()
         {
-            //TODO: put it back _broadcastsModelService.Delete(SelectedBroadcast.Id);
+            _broadcastRepository.Delete(SelectedBroadcast.Id);
             NotifyOfPropertyChange(() => BroadcastsList);
         }
         

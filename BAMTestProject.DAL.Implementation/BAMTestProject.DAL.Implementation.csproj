@@ -121,6 +121,7 @@
   <ItemGroup>
     <Compile Include="ApplicationDBContext.cs" />
     <Compile Include="BaseEntities\BaseEntity.cs" />
+    <Compile Include="Configurations\BroadcastConfiguration.cs" />
     <Compile Include="Migrations\202111260851352_FirstMigratiom.cs" />
     <Compile Include="Migrations\202111260851352_FirstMigratiom.designer.cs">
       <DependentUpon>202111260851352_FirstMigratiom.cs</DependentUpon>
@@ -156,6 +157,10 @@
     <Compile Include="Migrations\202112021410443_MarketOptionalForeignKeyRemoveMigration.cs" />
     <Compile Include="Migrations\202112021410443_MarketOptionalForeignKeyRemoveMigration.designer.cs">
       <DependentUpon>202112021410443_MarketOptionalForeignKeyRemoveMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202112030833351_DatabaseCorrectionMigration.cs" />
+    <Compile Include="Migrations\202112030833351_DatabaseCorrectionMigration.designer.cs">
+      <DependentUpon>202112030833351_DatabaseCorrectionMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Entities\BroadcastEntity.cs" />
@@ -194,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112021410443_MarketOptionalForeignKeyRemoveMigration.resx">
       <DependentUpon>202112021410443_MarketOptionalForeignKeyRemoveMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112030833351_DatabaseCorrectionMigration.resx">
+      <DependentUpon>202112030833351_DatabaseCorrectionMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
