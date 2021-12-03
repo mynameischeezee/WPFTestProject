@@ -1,7 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using BAMTestProject.BL.Implement.Repositories;
 using BAMTestProject.BL.Implementation.BaseRepositories;
-using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 using Caliburn.Micro;
 

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Linq;
-using BAMTestProject.BL.Implement.Repositories;
 using BAMTestProject.BL.Implementation.BaseRepositories;
-using BAMTestProject.BL.Implementation.BaseServices;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 using Caliburn.Micro;
