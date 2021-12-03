@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using Autofac;
-using BAMTestProject.BL.Implement.Repositories;
+using BAMTestProject.BL.Implementation.Repositories;
 using BAMTestProject.BL.Implementation.BaseRepositories;
 using BAMTestProject.BL.Implementation.BaseServices;
 using BAMTestProject.BL.Implementation.DTO;

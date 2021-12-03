@@ -5,7 +5,7 @@ using BAMTestProject.BL.Implementation.BaseRepositories;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 
-namespace BAMTestProject.BL.Implement.Repositories
+namespace BAMTestProject.BL.Implementation.Repositories
 {
     public class ShowRepository : IBaseRepository<ShowEntity>
     {
