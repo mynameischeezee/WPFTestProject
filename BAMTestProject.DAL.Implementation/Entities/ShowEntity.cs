@@ -2,7 +2,7 @@
 
 namespace BAMTestProject.DAL.Implementation.Entities
 {
-    public class Show : BaseEntity
+    public class ShowEntity : BaseEntity
     {
         public string Name { get; set; }
     }

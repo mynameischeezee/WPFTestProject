@@ -119,6 +119,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseRepositories\IBaseRepository.cs" />
     <Compile Include="BaseServices\IBroadcastEndDateCalculator.cs" />
     <Compile Include="DTO\BroadcastDto.cs" />
     <Compile Include="Factory\BroadcastDtoFactory.cs" />

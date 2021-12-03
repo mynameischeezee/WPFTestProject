@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using BAMTestProject.BL.Implement.Repositories;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 using Caliburn.Micro;
@@ -9,8 +8,8 @@ namespace BAMTestProject.ViewModels
     public class ShowsViewModel : Screen
     {
         private readonly ApplicationDbContext _dbContext;
-        private ObservableCollection<Show> _showsList;
-        private Show _selectedShow;
+        private ObservableCollection<ShowEntity> _showsList;
+        private ShowEntity _selectedShow;
         private int _showIdDetail;
         private string _showNameDetail;
         private string _addShowName;
@@ -22,17 +21,17 @@ namespace BAMTestProject.ViewModels
             _dbContext = dbContext;
         }
 
-        public ObservableCollection<Show> ShowsList
+        public ObservableCollection<ShowEntity> ShowsList
         {
             get
             {
-                _showsList = new ObservableCollection<Show>(_dbContext.Shows);
+                _showsList = new ObservableCollection<ShowEntity>(_dbContext.Shows);
                 return _showsList;
             }
             set => Set(ref _showsList, value, nameof(ShowsList));
         }
 
-        public Show SelectedShow
+        public ShowEntity SelectedShow
         {
             get => _selectedShow;
             set
@@ -74,7 +73,7 @@ namespace BAMTestProject.ViewModels
 
         public void EditShow()
         {
-            Show showToEdit = new Show() {Name = _showNameDetail};
+            ShowEntity showToEdit = new ShowEntity() {Name = _showNameDetail};
             //TODO: put it back _showModelService.Edit(_selectedShow.Id, showToEdit);
             NotifyOfPropertyChange(() => ShowsList);
         }
@@ -83,7 +82,7 @@ namespace BAMTestProject.ViewModels
 
         public void AddShow()
         {
-            Show showToAdd = new Show() {Name = _addShowName};
+            ShowEntity showToAdd = new ShowEntity() {Name = _addShowName};
             //TODO: put it back _showModelService.Insert(showToAdd);
             AddShowName = "";
             NotifyOfPropertyChange(() => ShowsList);

@@ -5,9 +5,9 @@ namespace BAMTestProject.DAL.Implementation
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<Show> Shows { get; set; }
-        public DbSet<Market> Markets { get; set; }
-        public DbSet<Broadcast> Broadcasts { get; set; }
+        public DbSet<ShowEntity> Shows { get; set; }
+        public DbSet<MarketEntity> Markets { get; set; }
+        public DbSet<BroadcastEntity> Broadcasts { get; set; }
 
         public ApplicationDbContext() : base("BAMDatabaseConnectionString")
         {

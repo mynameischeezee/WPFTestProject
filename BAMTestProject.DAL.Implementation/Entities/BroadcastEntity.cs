@@ -6,10 +6,10 @@ using BAMTestProject.DAL.Implementation.BaseEntities;
 
 namespace BAMTestProject.DAL.Implementation.Entities
 {
-    public class Broadcast : BaseEntity
+    public class BroadcastEntity : BaseEntity
     {
         public int ShowId { get; set; }
-        [ForeignKey(nameof(ShowId))] public Show Show { get; set; }
+        [ForeignKey(nameof(ShowId))] public ShowEntity Show { get; set; }
         public DateTime StartDate { get; set; }
         public string BroadcastDays { get; set; }
 
@@ -28,6 +28,6 @@ namespace BAMTestProject.DAL.Implementation.Entities
         public int ShowsAmount { get; set; }
         [NotMapped] public DateTime EndDate { get; set; }
         public int MarketId { get; set; }
-        [ForeignKey(nameof(MarketId))] public Market Market { get; set; }
+        [ForeignKey(nameof(MarketId))] public MarketEntity Market { get; set; }
     }
 }

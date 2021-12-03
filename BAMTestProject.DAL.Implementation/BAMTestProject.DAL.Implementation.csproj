@@ -158,9 +158,9 @@
       <DependentUpon>202112021410443_MarketOptionalForeignKeyRemoveMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Entities\Broadcast.cs" />
-    <Compile Include="Entities\Market.cs" />
-    <Compile Include="Entities\Show.cs" />
+    <Compile Include="Entities\BroadcastEntity.cs" />
+    <Compile Include="Entities\MarketEntity.cs" />
+    <Compile Include="Entities\ShowEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 
 namespace BAMTestProject.DAL.Implementation.Entities
 {
-    public class Market : BaseEntity
+    public class MarketEntity : BaseEntity
     {
         public string Name { get; set; }
     }

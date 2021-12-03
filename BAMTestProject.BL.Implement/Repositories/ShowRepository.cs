@@ -1,10 +1,11 @@
 ﻿using System.Linq;
+using BAMTestProject.BL.Implementation.BaseRepositories;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 
 namespace BAMTestProject.BL.Implement.Repositories
 {
-    public class ShowRepository
+    public class ShowRepository : IBaseRepository<ShowEntity>
     {
         private readonly ApplicationDbContext _dbContext;
 
@@ -20,7 +21,7 @@ namespace BAMTestProject.BL.Implement.Repositories
             _dbContext.SaveChanges();
         }
 
-        public Show Edit(int id, Show entity)
+        public ShowEntity Edit(int id, ShowEntity entity)
         {
             var show = _dbContext.Shows.FirstOrDefault(x => x.Id == id);
             _dbContext.Shows.Attach(show);
@@ -29,15 +30,20 @@ namespace BAMTestProject.BL.Implement.Repositories
             return show;
         }
 
-        public void Insert(Show entity)
+        public void Insert(ShowEntity entity)
         {
             _dbContext.Shows.Add(entity);
             _dbContext.SaveChanges();
         }
 
-        public Show Read(int id)
+        public ShowEntity Read(int id)
         {
             return _dbContext.Shows.FirstOrDefault(x => x.Id == id);
+        }
+
+        public ShowEntity Search(int id)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

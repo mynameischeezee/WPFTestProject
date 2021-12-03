@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using BAMTestProject.BL.Implement.Repositories;
 using BAMTestProject.DAL.Implementation;
 using BAMTestProject.DAL.Implementation.Entities;
 using Caliburn.Micro;
@@ -9,7 +8,7 @@ namespace BAMTestProject.ViewModels
     public class MarketsViewModel : Screen
     {
         private readonly ApplicationDbContext _dbContext;
-        private Market _selectedMarket;
+        private MarketEntity _selectedMarket;
         private int _marketIdDetail;
         private string _marketNameDetail;
         private string _addMarketName;
@@ -21,19 +20,19 @@ namespace BAMTestProject.ViewModels
             _dbContext = dbContext;
         }
 
-        private ObservableCollection<Market> _marketsList;
+        private ObservableCollection<MarketEntity> _marketsList;
 
-        public ObservableCollection<Market> MarketsList
+        public ObservableCollection<MarketEntity> MarketsList
         {
             get
             {
-                _marketsList = new ObservableCollection<Market>(_dbContext.Markets);
+                _marketsList = new ObservableCollection<MarketEntity>(_dbContext.Markets);
                 return _marketsList;
             }
             set => Set(ref _marketsList, value, nameof(MarketsList));
         }
 
-        public Market SelectedMarket
+        public MarketEntity SelectedMarket
         {
             get => _selectedMarket;
             set
@@ -77,14 +76,14 @@ namespace BAMTestProject.ViewModels
 
         public void EditMarket()
         {
-            var marketToEdit = new Market() {Name = _marketNameDetail};
+            var marketToEdit = new MarketEntity() {Name = _marketNameDetail};
             //TODO: put it back _marketModelService.Edit(_selectedMarket.Id, marketToEdit);
             NotifyOfPropertyChange(() => MarketsList);
         }
 
         public void AddMarket()
         {
-            var marketToAdd = new Market() {Name = _addMarketName};
+            var marketToAdd = new MarketEntity() {Name = _addMarketName};
             //TODO: put it back _marketModelService.Insert(marketToAdd);
             AddMarketName = "";
             NotifyOfPropertyChange(() => MarketsList);

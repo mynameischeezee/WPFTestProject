@@ -13,12 +13,12 @@ namespace BAMTestProject.ViewModels
     {
         private readonly ApplicationDbContext _dbContext;
         //private readonly BroadcastRepository _broadcastsModelService;
-        private ObservableCollection<Broadcast> _broadcastsList;
-        private Broadcast _selectedBroadcast;
+        private ObservableCollection<BroadcastEntity> _broadcastsList;
+        private BroadcastEntity _selectedBroadcast;
         private ObservableCollection<string> _addShowsList;
-        private Show _addSelectedShow;
+        private ShowEntity _addSelectedShow;
         private ObservableCollection<string> _addMarketsList;
-        private Market _addSelectedMarket;
+        private MarketEntity _addSelectedMarket;
         private DateTime _addStartDate;
         private DateTime _addEndDate;
         private string _addBroadcastViewsCount;
@@ -38,17 +38,17 @@ namespace BAMTestProject.ViewModels
             DaysOfWeek = new ObservableCollection<DayOfWeekViewModel>(CreateDayOfWeekViewModels());
         }
 
-        public Broadcast SelectedBroadcast
+        public BroadcastEntity SelectedBroadcast
         {
             get => _selectedBroadcast;
             set => Set(ref _selectedBroadcast, value, nameof(SelectedBroadcast));
         }
 
-        public ObservableCollection<Broadcast> BroadcastsList
+        public ObservableCollection<BroadcastEntity> BroadcastsList
         {
             get
             {
-                _broadcastsList = new ObservableCollection<Broadcast>();
+                _broadcastsList = new ObservableCollection<BroadcastEntity>();
                 return _broadcastsList;
             }
             set => Set(ref _broadcastsList, value, nameof(BroadcastsList));
@@ -77,7 +77,7 @@ namespace BAMTestProject.ViewModels
                 }
                 catch
                 {
-                    _addSelectedShow = new Show();
+                    _addSelectedShow = new ShowEntity();
                 }
 
                 NotifyOfPropertyChange(() => AddSelectedShow);
@@ -96,7 +96,7 @@ namespace BAMTestProject.ViewModels
                 }
                 catch
                 {
-                    _addSelectedMarket = new Market();
+                    _addSelectedMarket = new MarketEntity();
                 }
 
                 NotifyOfPropertyChange(() => AddSelectedMarket);
@@ -128,7 +128,7 @@ namespace BAMTestProject.ViewModels
 
         public void AddBroadcast()
         {
-            var broadcastToAdd = new Broadcast()
+            var broadcastToAdd = new BroadcastEntity()
             {
                 MarketId = _addSelectedMarket.Id,
                 ShowId = _addSelectedShow.Id,
