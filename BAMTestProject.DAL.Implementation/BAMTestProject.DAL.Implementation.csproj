@@ -121,7 +121,6 @@
   <ItemGroup>
     <Compile Include="ApplicationDBContext.cs" />
     <Compile Include="BaseEntities\BaseEntity.cs" />
-    <Compile Include="Configurations\BroadcastConfiguration.cs" />
     <Compile Include="Migrations\202111260851352_FirstMigratiom.cs" />
     <Compile Include="Migrations\202111260851352_FirstMigratiom.designer.cs">
       <DependentUpon>202111260851352_FirstMigratiom.cs</DependentUpon>
